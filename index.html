@@ -142,6 +142,82 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
 .userbar{display:flex;align-items:center;gap:10px;margin-left:auto;font-size:12.5px}
 .userbar button{background:#fff2;color:#fff;border:1px solid #fff5;padding:6px 12px;border-radius:7px;cursor:pointer;transition:background var(--rapide)}
 .userbar button:hover{background:#fff3}
+/* Graphiques du tableau de bord (HTML/CSS pur : l'application doit rester 100 % hors ligne) */
+.graph-grille{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.gb-ligne{display:grid;grid-template-columns:minmax(110px,190px) 1fr 70px;align-items:center;gap:10px;padding:6px 0;font-size:12.5px;cursor:default}
+.gb-ligne:hover .gb-nom{color:var(--bleu);font-weight:bold}
+.gb-nom{color:#33404d;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gb-piste{height:12px;background:var(--bleu-clair);border-radius:4px;overflow:hidden;display:block}
+.gb-barre{display:block;height:100%;background:var(--bleu2);border-radius:0 4px 4px 0}
+.gb-barre.depasse{background:var(--rouge)}
+.gb-pct{text-align:right;font-weight:bold;color:var(--bleu)}
+.gm-zone{position:relative;display:flex;align-items:flex-end;gap:4px;height:170px;border-bottom:1px solid var(--bordure)}
+.gm-col{flex:1;height:100%;display:flex;align-items:flex-end;justify-content:center;cursor:default;border-radius:4px}
+.gm-col:hover{background:rgba(17,34,140,.05)}
+.gm-col:hover .gm-barre{background:var(--bleu)}
+.gm-barre{width:70%;max-width:34px;background:var(--bleu2);border-radius:4px 4px 0 0}
+.gm-col.courant .gm-barre{background:var(--or-fonce)}
+.gm-ref{position:absolute;left:0;right:0;border-top:2px dashed var(--gris);opacity:.55;pointer-events:none}
+#dashAlertes:not(:empty){margin-bottom:14px}
+.gm-mois{display:flex;gap:4px;font-size:11px;color:var(--gris);margin-top:4px}
+.gm-mois span{flex:1;text-align:center}
+.graph-legende{font-size:11.5px;color:var(--gris);margin-top:10px}
+#infobulle{position:fixed;z-index:1000;pointer-events:none;background:#1c2530;color:#fff;font-size:12px;padding:7px 10px;border-radius:6px;box-shadow:var(--ombre-md);display:none;max-width:280px;line-height:1.45}
+/* Plan de décaissement : barre de navigation par jour et calendrier mensuel */
+.pl-barre{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.pl-etat{padding:9px 12px;border-radius:7px;font-size:12.5px;font-weight:bold;margin-bottom:12px;border:1px solid}
+.pl-etat.ouvert{background:#e8f0fd;border-color:var(--bleu2);color:var(--bleu)}
+.pl-etat.cloture{background:#fff8e6;border-color:#e0a030;color:#8a5a00}
+.pl-etat.signe{background:#e6f4ea;border-color:var(--vert);color:var(--vert)}
+.badge-urgence{background:var(--accent);color:#fff;padding:2px 7px;border-radius:8px;font-size:10.5px;font-weight:bold;white-space:nowrap}
+.badge-prog{background:var(--bleu-clair);color:var(--bleu);border:1px solid var(--bleu2);padding:1px 7px;border-radius:8px;font-size:10.5px;font-weight:bold;white-space:nowrap}
+tr.ligne-urgence td{background:#fff1ea}
+.cal-entete{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-weight:bold;color:var(--bleu)}
+.cal-grille{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-jsem{font-size:11px;color:var(--gris);text-align:center;font-weight:bold;padding:4px 0}
+.cal-jour{border:1px solid var(--bordure);border-radius:6px;min-height:58px;padding:4px 6px;font-size:11px;cursor:pointer;background:#fff;text-align:left;font-family:inherit;color:#33404d}
+.cal-jour:hover{background:var(--bleu-clair)}
+.cal-jour.vide{visibility:hidden}
+.cal-jour.choisi{outline:2px solid var(--bleu2)}
+.cal-jour b{display:block;font-size:12px;color:var(--bleu)}
+.cal-jour .cal-info{display:block;margin-top:2px}
+/* Impression paysage (plan de décaissement, document à payer) : A4 paysage, police ≥ 9 pt */
+.pp-page{font-family:Arial,Helvetica,sans-serif;color:#000;font-size:9.5pt;width:277mm}
+.pp-entete{display:grid;grid-template-columns:24mm 1fr 24mm;align-items:center;border-bottom:2px solid #142c78;padding-bottom:4px}
+.pp-entete img{width:22mm;height:22mm;object-fit:contain}
+.pp-entete .pp-lignes{text-align:center;line-height:1.35}
+.pp-entete .pp-lignes div{font-weight:bold;font-size:10pt}
+.pp-entete .pp-lignes .pp-inst{font-size:11.5pt;color:#142c78}
+.pp-titre{text-align:center;font-weight:bold;font-size:14pt;color:#142c78;margin:6px 0 2px;letter-spacing:.4px}
+.pp-sous{text-align:center;font-size:10pt;margin-bottom:6px}
+.pp-resume{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:9.5pt;margin:4px 0 6px}
+table.pp-table{width:100%;border-collapse:collapse;font-size:9pt}
+table.pp-table th,table.pp-table td{border:1px solid #000;padding:2px 4px;color:#000;position:static;vertical-align:middle}
+table.pp-table th{background:#dce3f5;font-weight:bold;text-align:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+table.pp-table thead{display:table-header-group}
+table.pp-table tr{break-inside:avoid}
+.pp-sign,.pp-fait{break-inside:avoid}
+table.pp-table td.n{text-align:right;white-space:nowrap}
+table.pp-table td.c{text-align:center;white-space:nowrap}
+table.pp-table tr.total td{font-weight:bold;background:#eee;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+table.pp-table tr:nth-child(even){background:none}
+.pp-fait{text-align:right;margin:8px 4mm 0;font-size:10pt}
+.pp-sign{display:grid;gap:10mm;margin-top:3mm;text-align:center;font-size:10pt;font-weight:bold}
+.pp-sign .pp-espace{height:16mm}
+.pp-sign .pp-visa{font-weight:normal;font-size:8.5pt;color:#333;margin-top:1mm}
+.pp-pied{margin-top:3mm;font-size:8pt;color:#444;display:flex;justify-content:space-between}
+/* Tablettes et téléphones : formulaires sur une colonne, tableaux défilables */
+@media (max-width:820px){
+  .grid2,.grid3,.graph-grille{grid-template-columns:1fr}
+  header.app{flex-wrap:wrap;padding:12px 14px}
+  header.app h1{font-size:14.5px}
+  .userbar{margin-left:0;width:100%;justify-content:space-between}
+  main{padding:0 10px 50px;margin-top:12px}
+  .panel{padding:14px;overflow-x:auto}
+  .nav-current{width:100%;margin-left:0}
+  .gb-ligne{grid-template-columns:minmax(90px,120px) 1fr 68px}
+  .login-box{width:calc(100vw - 32px);max-width:340px;padding:26px 22px}
+}
 </style>
 </head>
 <body>
@@ -153,7 +229,7 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
     <img id="loginLogo" src="">
     <h2>SIG-OP — Connexion</h2>
     <input id="login_user" placeholder="Identifiant" autocomplete="username">
-    <input id="login_pass" type="password" placeholder="Mot de passe" autocomplete="current-password">
+    <input id="login_pass" type="password" placeholder="Mot de passe" autocomplete="current-password" onkeydown="if(event.key==='Enter')tenterConnexion()">
     <button class="btn" onclick="tenterConnexion()">Se connecter</button>
     <div id="loginMsg"></div>
     <p class="note" style="text-align:left">Premier démarrage : utilisez les identifiants fournis dans le guide d'installation remis séparément par l'administrateur. Changez ce mot de passe immédiatement après la première connexion (Paramètres → Comptes utilisateurs).</p>
@@ -194,7 +270,9 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
         <button data-tab="liquidation" id="navLiquidation">⚖️ Liquidation</button>
         <button data-tab="validation" id="navValidation">✅ Ordonnancement</button>
         <button data-tab="validation-dg" id="navValidationDG">🏛️ Approbation DG (MDF)</button>
+        <button data-tab="docpayer" id="navDocPayer">📑 Document à payer (DIRFIN)</button>
         <button data-tab="paiement" id="navPaiement">💰 Paiement</button>
+        <button data-tab="plan" id="navPlan">🧾 Plan de décaissement journalier</button>
         <button data-tab="caisse" id="navCaisse">🏦 Caisse / Coffre-fort</button>
       </div>
     </div>
@@ -217,6 +295,17 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
 <section class="tab active" id="tab-dash">
   <div id="dashAlertes"></div>
   <div class="cards" id="dashCards"></div>
+  <div class="graph-grille">
+    <div class="panel">
+      <h2>📊 Exécution du budget par compte</h2>
+      <div id="dashGrapheComptes"></div>
+      <div class="graph-legende">Part du crédit annuel voté déjà engagée (OP + MDF non rejetées ni annulées, convertie en CDF). Survolez une ligne pour le détail.</div>
+    </div>
+    <div class="panel">
+      <h2>📈 Engagements mensuels — 12 derniers mois</h2>
+      <div id="dashGrapheMois"></div>
+    </div>
+  </div>
   <div class="panel" id="dashPipelinePanel" style="display:none">
     <h2>⛓️ Chaîne de la dépense (ELOP) — en attente de traitement</h2>
     <div class="cards" id="dashPipeline"></div>
@@ -619,10 +708,100 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
     <div class="card" style="max-width:300px;margin-bottom:12px"><b id="pay_count" style="font-size:22px"></b><span>Pièce(s) ordonnancée(s) en attente de paiement</span></div>
     <div class="scrollbox">
       <table>
-        <thead><tr><th>Type</th><th>N°</th><th>Date</th><th>Bénéficiaire</th><th>Montant</th><th>Mode</th><th>Ordonnancé/Approuvé par</th><th>Action</th></tr></thead>
+        <thead><tr><th>Type</th><th>N°</th><th>Date</th><th>Bénéficiaire</th><th>Montant</th><th>Mode</th><th>Ordonnancé/Approuvé par</th><th>Programmation DIRFIN</th><th>Action</th></tr></thead>
         <tbody id="pay_body"></tbody>
       </table>
     </div>
+  </div>
+  <div class="panel" data-role-caisse style="border-left:4px solid var(--accent)">
+    <h2>⚡ Paiement d'urgence — hors programme du Directeur des Finances</h2>
+    <p class="note">À n'utiliser que sur <b>ordre du Directeur Général ou de l'Administrateur du Budget</b>, quand une dépense ne peut pas attendre le programme du DIRFIN : la caisse décaisse, les documents suivent. La pièce est créée comme une OP marquée « URGENCE », payée immédiatement (le coffre-fort est débité si Espèces) et inscrite au plan de décaissement du jour. Elle reste signalée au Directeur des Finances et à l'Administrateur du Budget jusqu'à sa <b>régularisation</b> : rien n'échappe au suivi.</p>
+    <div class="grid3">
+      <div class="champ"><label>Bénéficiaire *</label><input id="ur_beneficiaire"></div>
+      <div class="champ"><label>Libellé / objet *</label><input id="ur_objet"></div>
+      <div class="champ"><label>Compte budgétaire à débiter *</label><select id="ur_compte"></select></div>
+      <div class="champ"><label>Montant *</label><input type="number" step="0.01" id="ur_montant"></div>
+      <div class="champ"><label>Devise</label><select id="ur_devise"><option>CDF</option><option selected>USD</option></select></div>
+      <div class="champ"><label>Mode de paiement</label><select id="ur_mode"><option>Espèces</option><option>Virement</option><option>Mobile Money</option><option>Chèque</option></select></div>
+      <div class="champ"><label>Autorité ayant ordonné le paiement *</label>
+        <select id="ur_fonction"><option>Directeur Général</option><option>Administrateur du Budget</option></select></div>
+      <div class="champ"><label>Nom de l'autorité *</label><input id="ur_autorite" placeholder="Nom de la personne qui a signé l'ordre"></div>
+      <div class="champ"><label>Motif de l'urgence / réf. de l'ordre écrit *</label><input id="ur_motif"></div>
+    </div>
+    <button class="btn danger" onclick="payerUrgence()">⚡ Enregistrer et payer en urgence</button>
+  </div>
+</section>
+
+<!-- DOCUMENT À PAYER (PROGRAMMATION PAR LE DIRECTEUR DES FINANCES) -->
+<section class="tab" id="tab-docpayer">
+  <div class="panel">
+    <h2>📑 Document à payer — programme de paiement du Directeur des Finances</h2>
+    <p class="note">Toutes les OP ordonnancées et MDF approuvées par le DG, pas encore payées. Le Directeur des Finances <b>sélectionne</b> celles que la caisse est autorisée à payer pour une date donnée : seules les pièces programmées apparaissent comme payables à la caisse. L'Administrateur du Budget et la Conseillère des Finances suivent ce document en lecture.</p>
+    <div class="cards" id="dp_entete"></div>
+    <div class="grid3">
+      <div class="champ"><label>Programmer pour le</label><input type="date" id="dp_date"></div>
+      <div class="champ"><label>Afficher</label>
+        <select id="dp_filtre" onchange="renderDocPayer()">
+          <option value="a_programmer">À programmer</option>
+          <option value="programmees">Déjà programmées (non payées)</option>
+          <option value="toutes">Toutes les pièces à payer</option>
+        </select></div>
+      <div class="champ"><label>Recherche (n°, nom, libellé)</label><input id="dp_recherche" oninput="renderDocPayer()" placeholder="Rechercher…"></div>
+    </div>
+    <div style="margin-bottom:10px">
+      <button class="btn vert" data-role-dirfin onclick="programmerSelection()">✅ Programmer la sélection</button>
+      <button class="btn secondaire" onclick="imprimerDocPayer()">🖨️ Imprimer (A4 paysage)</button>
+      <button class="btn secondaire" onclick="exporterDocPayerExcel()">📗 Exporter en Excel</button>
+    </div>
+    <div class="scrollbox" style="max-height:520px">
+      <table>
+        <thead><tr><th>DATE</th><th>NOMS</th><th>LIBELLÉ</th><th>MONTANT CDF</th><th>MONTANT USD</th><th>CDF CONVERTIS EN USD</th><th>TOTAL USD</th><th>OBSERVATION</th><th>N° PIÈCE</th>
+          <th style="white-space:nowrap"><input type="checkbox" id="dp_tout" onchange="document.querySelectorAll('.dp-sel').forEach(c=>c.checked=this.checked)" title="Tout cocher" style="width:auto;vertical-align:middle"> SÉLECTION</th></tr></thead>
+        <tbody id="dp_body"></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="panel" style="border-left:4px solid var(--accent)">
+    <h2>⚡ Décaissements d'urgence à régulariser</h2>
+    <p class="note">Paiements faits par la caisse sur ordre d'une autorité, hors programme. Le Directeur des Finances les vérifie et les <b>régularise</b> (visa a posteriori) ; ils suivent ensuite la chaîne normale (liquidation, ordonnancement).</p>
+    <div class="scrollbox">
+      <table>
+        <thead><tr><th>N°</th><th>Payé le</th><th>Bénéficiaire</th><th>Libellé</th><th>Montant</th><th>Ordonné par</th><th>Motif</th><th>Payé par</th><th>Action</th></tr></thead>
+        <tbody id="dp_urg_body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN DE DÉCAISSEMENT JOURNALIER (JOURNAL DE CAISSE) -->
+<section class="tab" id="tab-plan">
+  <div class="panel">
+    <h2>🧾 Plan de décaissement journalier — journal de caisse</h2>
+    <div class="pl-barre">
+      <button class="btn secondaire petit" onclick="planDecalerJour(-1)" title="Jour précédent">◀</button>
+      <input type="date" id="pl_date" onchange="renderPlan()" style="width:auto">
+      <button class="btn secondaire petit" onclick="planDecalerJour(1)" title="Jour suivant">▶</button>
+      <button class="btn secondaire petit" onclick="document.getElementById('pl_date').value=jourLocal(new Date());renderPlan()">Aujourd'hui</button>
+      <input id="pl_recherche" oninput="renderPlan()" placeholder="🔎 Rechercher sur toutes les dates (n°, bénéficiaire, libellé, montant)…" style="flex:1;min-width:220px">
+    </div>
+    <div id="pl_statut"></div>
+    <div class="cards" id="pl_totaux"></div>
+    <div class="scrollbox" style="max-height:520px">
+      <table>
+        <thead><tr><th>N°</th><th>DATE</th><th>HEURE</th><th>N° PIÈCE</th><th>BENEF.</th><th>LIBELLE</th><th>MONTANT USD</th><th>MONTANT CDF</th><th>CPTE. A DEBITER</th><th>OBS.</th><th>Payé par</th></tr></thead>
+        <tbody id="pl_body"></tbody>
+      </table>
+    </div>
+    <div id="pl_actions" style="margin-top:12px"></div>
+    <div style="margin-top:8px">
+      <button class="btn secondaire" onclick="imprimerPlan()">🖨️ Imprimer le plan (A4 paysage, 1 page)</button>
+      <button class="btn secondaire" onclick="exporterPlanExcel()">📗 Exporter le plan en Excel</button>
+      <button class="btn secondaire" onclick="exporterRapportCaisseExcel()">📗 Rapport journalier de caisse (Excel)</button>
+    </div>
+  </div>
+  <div class="panel">
+    <h2>📅 Calendrier des décaissements</h2>
+    <div id="pl_calendrier"></div>
   </div>
 </section>
 
@@ -637,7 +816,7 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
     <h2>Alimenter le coffre-fort</h2>
     <div class="grid3">
       <div class="champ"><label>Montant</label><input type="number" step="0.01" id="cx_montant"></div>
-      <div class="champ"><label>Devise</label><select id="cx_devise"><option>CDF</option><option selected>USD</option><option>EUR</option></select></div>
+      <div class="champ"><label>Devise</label><select id="cx_devise"><option>CDF</option><option selected>USD</option></select></div>
       <div class="champ"><label>Source / motif</label><input id="cx_motif" placeholder="Ex: Retrait bancaire, recette encaissée..."></div>
     </div>
     <button class="btn vert" onclick="alimenterCaisse()">➕ Enregistrer l'alimentation</button>
@@ -750,6 +929,8 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
           <option value="gestionnaire">Gestionnaire du budget — imputations, crédits, budget voté, liquidation</option>
           <option value="validateur">Administrateur du Budget — ordonnance les OP (approbation définitive) et approuve les MDF en 1ʳᵉ instance</option>
           <option value="dg">Directeur Général — approbation finale des MDF (2ᵉ instance, après l'Administrateur du Budget)</option>
+          <option value="dirfin">Directeur des Finances (DIRFIN) — programme les paiements (Document à payer), régularise les urgences, vise le plan de décaissement</option>
+          <option value="conseiller">Conseiller(ère) des Finances — consulte et vise le plan de décaissement journalier</option>
           <option value="caissier">Caissier — enregistre les paiements et tient le coffre-fort (Caisse)</option>
           <option value="consultation">Consultation seule (lecture des rapports/soldes)</option>
           <option value="admin">Compte superviseur (tous les droits — à réserver à l'installation initiale)</option>
@@ -790,6 +971,7 @@ footer.app{text-align:center;color:var(--gris);font-size:12px;padding:22px}
 
 <!-- ZONE D'IMPRESSION -->
 <div id="print-area">
+  <div id="print-paysage-content" style="display:none"></div>
   <div id="print-op-content" class="pf-page">
     <div id="p_duplicata" class="pf-duplicata" style="display:none">DUPLICATA</div>
     <div id="p_projet" class="pf-projet" style="display:none">PROJET<br>NON VALIDÉ</div>
@@ -941,10 +1123,19 @@ const LS = {
   ops: 'sigop_ops', mdfs: 'sigop_mdfs', imput: 'sigop_imputations', credits: 'sigop_credits',
   rates: 'sigop_rates', logo: 'sigop_logo', users: 'sigop_users', session: 'sigop_session', budgetAnnuel: 'sigop_budget_annuel',
   compteurs: 'sigop_compteurs', audit: 'sigop_audit', seuils: 'sigop_seuils', clotures: 'sigop_clotures', previsionnel: 'sigop_previsionnel',
-  caisse: 'sigop_caisse'
+  caisse: 'sigop_caisse', derniereSauvegarde: 'sigop_derniere_sauvegarde', plans: 'sigop_plans_decaissement'
 };
 function load(key, fallback){ try{ const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
-function save(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+/* La mémoire du navigateur est limitée (≈ 5 Mo). Sans ce contrôle, un enregistrement refusé
+   (mémoire pleine, navigation privée) échouait en silence : l'utilisateur voyait « enregistrée »
+   alors que la pièce disparaissait au prochain rechargement. On prévient et on interrompt. */
+function save(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }
+  catch(e){
+    alert("⚠️ ÉCHEC D'ENREGISTREMENT : la mémoire du navigateur est pleine ou indisponible.\n\nLa dernière opération N'A PAS été conservée sur ce poste. Exportez immédiatement une sauvegarde (Paramètres → Sauvegarde), puis libérez de l'espace (par exemple un logo plus léger).");
+    throw e;
+  }
+}
 
 /* Échappement HTML : toute donnée saisie par un utilisateur (bénéficiaire, objet, observation,
    motif, nom...) est affichée via innerHTML pour la mise en forme des tableaux. Sans échappement,
@@ -990,6 +1181,10 @@ let previsionnel = load(LS.previsionnel, {});
    alimentations moins somme des décaissements de cette devise. Tenu uniquement par le rôle
    Caissier (ou Superviseur) — un espace à part, distinct du Gestionnaire du budget. */
 let caisseMouvements = load(LS.caisse, []);
+/* Plans de décaissement journaliers, indexés par date AAAA-MM-JJ : clôture par le caissier
+   (totaux, solde théorique, comptage physique) puis visas Conseiller / DIRFIN / AB. Les lignes
+   du plan ne sont pas recopiées : ce sont les pièces payées ce jour-là (datePaiement). */
+let plansDecaissement = load(LS.plans, {});
 let sessionUser = null;
 let imputationSelectionnee = null;
 let imputationSelectionneeMDF = null;
@@ -1037,6 +1232,8 @@ const LIBELLES_ROLES = {
   admin: 'Superviseur (tous droits)', agent: 'Agent de saisie (Engagement)',
   gestionnaire: 'Gestionnaire du budget (Liquidation)', validateur: 'Administrateur du Budget (Ordonnancement)',
   dg: 'Directeur Général (Approbation finale MDF)',
+  dirfin: 'Directeur des Finances (Programmation des paiements)',
+  conseiller: 'Conseiller(ère) des Finances',
   caissier: 'Caissier (Paiement / Coffre-fort)',
   consultation: 'Consultation seule'
 };
@@ -1056,6 +1253,27 @@ function peutApprouverDG(){ return sessionUser && (sessionUser.role==='admin' ||
 /* Le Caissier est un rôle à part, distinct du Gestionnaire du budget : lui seul enregistre les
    paiements et tient le coffre-fort — le Gestionnaire liquide, mais ne paie plus directement. */
 function peutPayer(){ return sessionUser && (sessionUser.role==='admin' || sessionUser.role==='caissier'); }
+/* Le Directeur des Finances programme les paiements : la caisse ne paie que ce qu'il a
+   sélectionné dans le Document à payer (hors urgences, qui lui restent signalées).
+   L'Administrateur du Budget, qui joue le rôle principal sur le budget, a une autorisation qui
+   couvre tout : il peut lui aussi programmer et régulariser. */
+function peutProgrammer(){ return sessionUser && (sessionUser.role==='admin' || sessionUser.role==='dirfin' || sessionUser.role==='validateur'); }
+/* Les trois visas du plan de décaissement journalier, chacun réservé à son titulaire. */
+const VISAS_PLAN = [
+  {cle:'conseiller', titre:'Le Conseiller des Finances', role:'conseiller'},
+  {cle:'dirfin',     titre:'Le Directeur des Finances',  role:'dirfin'},
+  {cle:'ab',         titre:"L'Administrateur du Budget", role:'validateur'}
+];
+function peutViser(cle){
+  const v = VISAS_PLAN.find(x=>x.cle===cle);
+  return !!(sessionUser && v && (sessionUser.role==='admin' || sessionUser.role===v.role));
+}
+/* Suivi financier (plan de décaissement, document à payer, audit, risques) : tous les rôles
+   de la Direction des Finances et du Budget, sous la supervision de l'AB. */
+function estSuiviFinancier(){
+  return peutGererBudget() || peutOrdonnancer() || peutApprouverDG() || peutPayer() || peutProgrammer()
+    || (sessionUser && sessionUser.role==='conseiller');
+}
 function connecterCommeUtilisateur(user){
   sessionUser = user;
   document.getElementById('loginOverlay').style.display='none';
@@ -1071,8 +1289,11 @@ function connecterCommeUtilisateur(user){
   document.getElementById('navValidationDG').style.display = peutApprouverDG() ? '' : 'none';
   document.getElementById('navPaiement').style.display = peutPayer() ? '' : 'none';
   document.getElementById('navCaisse').style.display = peutPayer() ? '' : 'none';
-  document.getElementById('navAudit').style.display = (peutGererBudget() || peutOrdonnancer() || peutApprouverDG() || peutPayer()) ? '' : 'none';
-  document.getElementById('navRisques').style.display = (peutGererBudget() || peutOrdonnancer() || peutApprouverDG() || peutPayer()) ? '' : 'none';
+  document.getElementById('navAudit').style.display = estSuiviFinancier() ? '' : 'none';
+  document.getElementById('navRisques').style.display = estSuiviFinancier() ? '' : 'none';
+  document.getElementById('navDocPayer').style.display = (estSuiviFinancier() && sessionUser.role!=='gestionnaire') ? '' : 'none';
+  document.getElementById('navPlan').style.display = estSuiviFinancier() ? '' : 'none';
+  document.querySelectorAll('[data-role-dirfin]').forEach(el=> el.style.display = peutProgrammer() ? '' : 'none');
   appInit();
   const btnRet0 = document.getElementById('navBtnRetour'); if(btnRet0) btnRet0.disabled = true;
   const btnSuiv0 = document.getElementById('navBtnSuivant'); if(btnSuiv0){ const v=_ongletsVisibles(); btnSuiv0.disabled = v.length<=1; }
@@ -1126,7 +1347,7 @@ function badgeDepassement(solde){
 }
 
 /* ===================== NAVIGATION ===================== */
-const ORDRE_ONGLETS = ['dash','saisie','mdf','liste','beneficiaire','imput','annuel','previsionnel','journal','liquidation','validation','validation-dg','paiement','caisse','risques','audit','param'];
+const ORDRE_ONGLETS = ['dash','saisie','mdf','liste','beneficiaire','imput','annuel','previsionnel','journal','liquidation','validation','validation-dg','docpayer','paiement','plan','caisse','risques','audit','param'];
 document.querySelectorAll('nav.tabs button[data-tab]').forEach(b=>{
   b.addEventListener('click', ()=>goTab(b.dataset.tab));
 });
@@ -1199,6 +1420,8 @@ function goTab(name){
   if(name==='validation') renderValidation();
   if(name==='validation-dg') renderValidationDG();
   if(name==='paiement') renderPaiement();
+  if(name==='docpayer') renderDocPayer();
+  if(name==='plan') renderPlan();
   if(name==='caisse') renderCaisse();
   if(name==='risques') renderRisques();
   if(name==='audit') renderAudit();
@@ -1519,7 +1742,12 @@ function renderDashboard(){
   mdfs.forEach(o=>{ parDeviseMdf[o.devise] = (parDeviseMdf[o.devise]||0) + Number(o.montant||0); });
   const montantsMdfTxt = Object.keys(parDeviseMdf).length ? Object.entries(parDeviseMdf).map(([d,v])=>d+': '+v.toLocaleString('fr-FR')).join(' · ') : '—';
 
+  const totalVote = totalVoteAnnuel();
+  const totalEngage = budgetAnnuel.comptes.reduce((s,c)=>s+engagementCumuleCompte(c.id),0);
+  const tauxExec = totalVote ? totalEngage/totalVote*100 : 0;
+
   document.getElementById('dashCards').innerHTML = `
+    <div class="card"><b${tauxExec>100?' style="color:var(--rouge)"':''}>${tauxExec.toLocaleString('fr-FR',{maximumFractionDigits:1})} %</b><span>Taux d'exécution budgétaire (${fmtMontant(totalEngage)} / ${fmtMontant(totalVote)} CDF)</span></div>
     <div class="card"><b>${total}</b><span>OP enregistrées</span></div>
     <div class="card"><b>${parStatut('Validée')}</b><span>OP validées</span></div>
     <div class="card"><b>${parStatut('Payée')}</b><span>OP payées</span></div>
@@ -1545,7 +1773,26 @@ function renderDashboard(){
   if(enAttenteValidation > 0){
     html += `<div class="alerte-depassement" style="background:#e8f0fd;border-color:var(--bleu);color:var(--bleu)">✅ ${enAttenteValidation} pièce(s) en attente de validation — voir l'onglet Validation.</div>`;
   }
+  const nUrgences = _urgencesARegulariser().length;
+  if(nUrgences > 0 && estSuiviFinancier()){
+    html += `<div class="alerte-depassement" style="background:#fff1ea;border-color:var(--accent);color:#a03000">⚡ ${nUrgences} décaissement(s) d'urgence hors programme en attente de régularisation par le Directeur des Finances. <button class="btn petit" style="margin-left:8px" onclick="goTab('docpayer')">Voir</button></div>`;
+  }
+  const nProgAujourdhui = _piecesAPayer().filter(p=>p.programme && p.programme.date<=jourLocal(new Date())).length;
+  if(nProgAujourdhui > 0 && peutPayer()){
+    html += `<div class="alerte-depassement" style="background:#e6f4ea;border-color:var(--vert);color:var(--vert)">💰 ${nProgAujourdhui} pièce(s) programmée(s) par le DIRFIN prête(s) à être payée(s). <button class="btn petit vert" style="margin-left:8px" onclick="goTab('paiement')">Payer</button></div>`;
+  }
+  /* Rappel de sauvegarde : toutes les données ne vivent que dans ce navigateur. Un nettoyage
+     du navigateur, une panne de disque ou une réinstallation les effacerait définitivement. */
+  if(ops.length + mdfs.length > 0){
+    const derniere = load(LS.derniereSauvegarde, null);
+    const jours = derniere ? Math.floor((Date.now() - new Date(derniere).getTime()) / 86400000) : null;
+    if(jours===null || jours >= 7){
+      const quand = jours===null ? "Aucune sauvegarde n'a encore été exportée depuis ce poste" : `Dernière sauvegarde exportée il y a ${jours} jour(s)`;
+      html += `<div class="alerte-depassement" style="background:#fff8e6;border-color:#e0a030;color:#8a5a00">💾 ${quand}. Les données n'existent que dans ce navigateur : exportez une copie régulièrement. <button class="btn petit" style="margin-left:8px" onclick="exporterJSON()">Exporter maintenant</button></div>`;
+    }
+  }
   alertesBox.innerHTML = html;
+  renderGraphesDashboard();
 
   const pipePanel = document.getElementById('dashPipelinePanel');
   const pipeBox = document.getElementById('dashPipeline');
@@ -1576,6 +1823,825 @@ function renderDashboard(){
     } else { risqPanel.style.display='none'; }
   }
 }
+
+/* ===================== DOCUMENT À PAYER · URGENCES · PLAN DE DÉCAISSEMENT ===================== */
+/* Circuit : OP/MDF ordonnancée → Document à payer → le DIRFIN la sélectionne (programme) →
+   la caisse paie (heure exacte notée) → plan de décaissement journalier → clôture de la
+   journée par la caisse → visas Conseiller des Finances, DIRFIN et AB → impression signée.
+   Une urgence (ordre écrit d'une autorité) est payée hors programme mais reste signalée au
+   DIRFIN et à l'AB jusqu'à sa régularisation. */
+function _pad2(n){ return String(n).padStart(2,'0'); }
+function jourLocal(d){ const x = new Date(d); return x.getFullYear()+'-'+_pad2(x.getMonth()+1)+'-'+_pad2(x.getDate()); }
+function fmtDateFr(iso){ if(!iso) return '—'; const s = String(iso).slice(0,10).split('-'); return s.length===3 ? s[2]+'/'+s[1]+'/'+s[0] : String(iso); }
+function heureLocale(iso){ return iso ? new Date(iso).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}) : '—'; }
+function fmt2(v){ return Number(v||0).toLocaleString('fr-FR',{minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+/* Ventilation d'une pièce dans les colonnes du modèle Excel « PAYE » : montant CDF, montant USD
+   et équivalent USD des CDF au taux du jour (cellule « Taux CDF pour 1 USD »). Les rares pièces
+   en EUR sont ramenées en USD via leur contre-valeur CDF figée. */
+function _ventilerUSD(p){
+  const taux = Number(rates.usd_cdf) || 1;
+  let cdf = 0, usd = 0;
+  if(p.devise==='CDF') cdf = Number(p.montant||0);
+  else if(p.devise==='USD') usd = Number(p.montant||0);
+  else usd = convertirPieceVersCDF(p) / taux;
+  return {cdf, usd, cdfEnUsd: cdf/taux, totalUsd: usd + cdf/taux};
+}
+
+/* ---------- Document à payer (Directeur des Finances) ---------- */
+function _urgencesARegulariser(){ return ops.filter(o=>o.urgence && !o.regularisePar && !o.annule); }
+function _docPayerLignes(){
+  const filtre = document.getElementById('dp_filtre').value;
+  const q = (document.getElementById('dp_recherche').value||'').trim().toLowerCase();
+  return _piecesAPayer().filter(p=>{
+    if(filtre==='a_programmer' && p.programme) return false;
+    if(filtre==='programmees' && !p.programme) return false;
+    if(q && ![p.numero, p.beneficiaire, p.objet, p.observation].some(v=>String(v||'').toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+function _totauxDocPayer(lignes){
+  return lignes.reduce((t,p)=>{ const v = _ventilerUSD(p); t.cdf+=v.cdf; t.usd+=v.usd; t.cdfEnUsd+=v.cdfEnUsd; t.total+=v.totalUsd; return t; },
+    {cdf:0, usd:0, cdfEnUsd:0, total:0});
+}
+function renderDocPayer(){
+  const lignes = _docPayerLignes();
+  const t = _totauxDocPayer(lignes);
+  document.getElementById('dp_entete').innerHTML = `
+    <div class="card"><b style="font-size:18px">${fmtMontant(rates.usd_cdf)}</b><span>Taux CDF pour 1 USD</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.cdf)}</b><span>Total CDF</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.usd)}</b><span>Total en USD</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.cdfEnUsd)}</b><span>Équivalent USD des montants CDF</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.total)}</b><span>TOTAL GÉNÉRAL USD — ${lignes.length} pièce(s)</span></div>`;
+  const peutProg = peutProgrammer();
+  document.getElementById('dp_tout').checked = false;
+  document.getElementById('dp_body').innerHTML = lignes.map(p=>{
+    const v = _ventilerUSD(p);
+    let selection;
+    if(p.programme){
+      const nbReports = (p.programme.reports||[]).length;
+      selection = `<span class="badge-prog">✅ ${fmtDateFr(p.programme.date)}</span>`
+        + (nbReports ? ` <span class="badge-urgence" title="${escapeHtml(p.programme.reports.map(r=>fmtDateFr(r.de)+' → '+fmtDateFr(r.a)+' : '+r.motif).join(' | '))}">↪ reportée ×${nbReports}</span>` : '')
+        + (peutProg ? ` <button class="btn secondaire petit" data-t="${p._type}" data-n="${escapeHtml(p.numero)}" onclick="retirerProgrammation(this.dataset.t,this.dataset.n)">Retirer</button>` : '');
+    } else if(peutProg){
+      selection = `<input type="checkbox" class="dp-sel" value="${escapeHtml(p._type+'|'+p.numero)}" style="width:auto;vertical-align:middle">
+        <button class="btn vert petit" data-t="${p._type}" data-n="${escapeHtml(p.numero)}" onclick="programmerPieces([[this.dataset.t,this.dataset.n]])">Sélectionner</button>`;
+    } else selection = '<span style="color:var(--gris)">Non programmée</span>';
+    return `<tr><td>${fmtDateFr(p.date)}</td><td>${escapeHtml(p.beneficiaire)}</td><td>${escapeHtml(p.objet||p.imputationLabel||'')}</td>
+      <td style="text-align:right">${v.cdf?fmt2(v.cdf):''}</td><td style="text-align:right">${v.usd?fmt2(v.usd):''}</td>
+      <td style="text-align:right">${fmt2(v.cdfEnUsd)}</td><td style="text-align:right"><b>${fmt2(v.totalUsd)}</b></td>
+      <td>${escapeHtml(p.observation||'')}${p.devise==='EUR'?' (EUR '+fmt2(p.montant)+')':''}</td>
+      <td style="white-space:nowrap">${escapeHtml(p.numero)}</td><td style="white-space:nowrap">${selection}</td></tr>`;
+  }).join('') || '<tr><td colspan="10">Aucune pièce dans cette sélection.</td></tr>';
+  renderUrgences();
+}
+function programmerPieces(liste){
+  if(!peutProgrammer()){ alert('Seul le Directeur des Finances (ou l\'Administrateur du Budget) peut programmer les paiements.'); return; }
+  const date = document.getElementById('dp_date').value;
+  if(!date){ alert('Choisissez la date de programmation.'); return; }
+  if(date < jourLocal(new Date())){ alert('La date de programmation ne peut pas être dans le passé.'); return; }
+  if(planEstCloture(date)){ alert('La journée de caisse du '+fmtDateFr(date)+' est déjà clôturée : choisissez une autre date.'); return; }
+  const pieces = liste.map(([t,n])=>({t, p:_trouverPiece(t,n)}))
+    .filter(x=>x.p && !x.p.programme && !x.p.payePar && !x.p.annule && x.p.statutValidation==='Validée');
+  if(!pieces.length){ alert('Aucune pièce programmable dans la sélection.'); return; }
+  if(!confirm('Programmer '+pieces.length+' pièce(s) pour paiement à la caisse le '+fmtDateFr(date)+' ?')) return;
+  const maintenant = new Date().toISOString();
+  pieces.forEach(({t,p})=>{
+    p.programme = {date, par: sessionUser.username, le: maintenant};
+    enregistrerAudit('Programmation paiement '+t, p.numero+' — pour le '+date);
+  });
+  save(LS.ops, ops); save(LS.mdfs, mdfs);
+  renderDocPayer(); renderDashboard();
+}
+function programmerSelection(){
+  const liste = [...document.querySelectorAll('.dp-sel:checked')].map(c=>c.value.split('|'));
+  if(!liste.length){ alert('Cochez d\'abord les pièces à programmer.'); return; }
+  programmerPieces(liste);
+}
+function retirerProgrammation(type, numero){
+  const p = _trouverPiece(type, numero); if(!p || !p.programme) return;
+  if(!peutProgrammer()){ alert('Seul le Directeur des Finances (ou l\'Administrateur du Budget) peut modifier le programme de paiement.'); return; }
+  if(p.payePar){ alert('Cette pièce est déjà payée.'); return; }
+  const motif = prompt('Retirer '+numero+' du programme du '+fmtDateFr(p.programme.date)+' — motif (obligatoire) :');
+  if(!motif || !motif.trim()){ alert('Le motif est obligatoire.'); return; }
+  const ancienne = p.programme.date;
+  delete p.programme;
+  save(type==='OP' ? LS.ops : LS.mdfs, type==='OP' ? ops : mdfs);
+  enregistrerAudit('Retrait du programme '+type, numero+' — prévu le '+ancienne+' — motif : '+motif.trim());
+  renderDocPayer(); renderDashboard();
+}
+
+/* ---------- Paiement d'urgence (Caisse) et régularisation (DIRFIN) ---------- */
+function payerUrgence(){
+  if(!peutPayer()){ alert('Seul un compte Caissier peut enregistrer un paiement d\'urgence.'); return; }
+  const val = id => document.getElementById(id).value.trim();
+  const beneficiaire = val('ur_beneficiaire'), objet = val('ur_objet'), compte = val('ur_compte');
+  const montant = Number(val('ur_montant')||0), devise = val('ur_devise'), mode = val('ur_mode');
+  const autorite = val('ur_autorite'), fonction = val('ur_fonction'), motif = val('ur_motif');
+  if(!beneficiaire || !objet || !compte || !(montant>0) || !autorite || !fonction || !motif){
+    alert('Tous les champs marqués * sont obligatoires : un paiement hors programme doit être entièrement justifié.'); return;
+  }
+  const aujourdhui = jourLocal(new Date());
+  if(estMoisCloture(aujourdhui)){ alert('Le mois '+aujourdhui.slice(0,7)+' est clôturé : aucune pièce ne peut y être enregistrée.'); return; }
+  if(planEstCloture(aujourdhui)){ alert('La journée de caisse du '+fmtDateFr(aujourdhui)+' est déjà clôturée : aucun nouveau décaissement ne peut y être inscrit.'); return; }
+  if(mode==='Espèces' && soldeCaisse(devise) < montant){
+    alert('Paiement bloqué : le coffre-fort ne contient que '+fmtMontant(soldeCaisse(devise))+' '+devise+'.'); return;
+  }
+  if(!confirm(`⚡ PAIEMENT D'URGENCE — HORS PROGRAMME DU DIRFIN\n\n${beneficiaire} — ${fmtMontant(montant)} ${devise} (${mode})\nObjet : ${objet}\nOrdonné par : ${autorite} (${fonction})\n\nConfirmer que l'argent est remis maintenant ?`)) return;
+  const maintenant = new Date().toISOString();
+  const numero = consommerNumero(aujourdhui, 'OP');
+  ops.push({
+    numero, date: aujourdhui, beneficiaire, adresse: '', objet, service: '', compte,
+    imputationCode: '', imputationLabel: 'À préciser à la régularisation (urgence)',
+    montant, devise, tauxFige: tauxCourantPour(devise), mode, statut: 'Payée',
+    observation: 'URGENCE — ordre de '+autorite+' ('+fonction+')', horsBudget: false,
+    statutValidation: 'En attente', creePar: sessionUser.username, validePar: null, dateValidation: null, commentaireValidation: '',
+    urgence: true, autoriteOrdonnatrice: autorite, fonctionAutorite: fonction, motifUrgence: motif,
+    payePar: sessionUser.username, datePaiement: maintenant
+  });
+  save(LS.ops, ops);
+  enregistrerAudit('Paiement d\'urgence OP', numero+' — '+beneficiaire+' — '+fmtMontant(montant)+' '+devise+' — ordonné par '+autorite+' ('+fonction+') — motif : '+motif);
+  if(mode==='Espèces') _enregistrerMouvementCaisse('Décaissement', montant, devise, 'OP', numero, 'URGENCE — '+objet+' — bénéficiaire : '+beneficiaire);
+  ['ur_beneficiaire','ur_objet','ur_montant','ur_autorite','ur_fonction','ur_motif'].forEach(id=>document.getElementById(id).value='');
+  alert('Paiement d\'urgence '+numero+' enregistré à '+heureLocale(maintenant)+'.\n\nIl figure au plan de décaissement du jour et reste signalé au Directeur des Finances et à l\'Administrateur du Budget jusqu\'à sa régularisation.');
+  renderPaiement(); renderDashboard();
+}
+function renderUrgences(){
+  const peutReg = peutProgrammer();
+  document.getElementById('dp_urg_body').innerHTML = _urgencesARegulariser().map(p=>{
+    const action = !peutReg ? '<i style="color:var(--gris)">Réservé au DIRFIN / AB</i>'
+      : p.payePar===sessionUser.username ? '<i style="color:var(--rouge)">Vous avez payé cette pièce</i>'
+      : `<button class="btn vert petit" data-n="${escapeHtml(p.numero)}" onclick="regulariserUrgence(this.dataset.n)">✔️ Régulariser</button>`;
+    return `<tr class="ligne-urgence"><td>${escapeHtml(p.numero)}</td><td style="white-space:nowrap">${fmtDateFr(jourLocal(p.datePaiement))} ${heureLocale(p.datePaiement)}</td>
+      <td>${escapeHtml(p.beneficiaire)}</td><td>${escapeHtml(p.objet)}</td><td style="text-align:right;white-space:nowrap">${fmt2(p.montant)} ${escapeHtml(p.devise)}</td>
+      <td>${escapeHtml(p.autoriteOrdonnatrice)}<br><small>${escapeHtml(p.fonctionAutorite)}</small></td><td>${escapeHtml(p.motifUrgence)}</td>
+      <td>${escapeHtml(p.payePar)}</td><td>${action}</td></tr>`;
+  }).join('') || '<tr><td colspan="9">Aucun décaissement d\'urgence en attente de régularisation.</td></tr>';
+}
+function regulariserUrgence(numero){
+  const p = _trouverPiece('OP', numero); if(!p || !p.urgence) return;
+  if(!peutProgrammer()){ alert('Seul le Directeur des Finances (ou l\'Administrateur du Budget) peut régulariser un décaissement d\'urgence.'); return; }
+  if(p.payePar===sessionUser.username){ alert('Séparation des tâches : vous ne pouvez pas régulariser un paiement que vous avez vous-même effectué.'); return; }
+  const obs = prompt('Régularisation de '+numero+' ('+p.beneficiaire+' — '+fmtMontant(p.montant)+' '+p.devise+').\n\nObservation du Directeur des Finances (facultatif) :', '');
+  if(obs===null) return;
+  p.regularisePar = sessionUser.username; p.dateRegularisation = new Date().toISOString(); p.observationRegularisation = obs.trim();
+  save(LS.ops, ops);
+  enregistrerAudit('Régularisation urgence', numero+(obs.trim() ? ' — '+obs.trim() : ''));
+  renderDocPayer(); renderDashboard();
+}
+
+/* ---------- Plan de décaissement journalier (journal de caisse) ---------- */
+function planEstCloture(date){ return !!(plansDecaissement[date] && plansDecaissement[date].cloturePar); }
+function _piecesPayees(){
+  return [...ops.map(o=>({...o, _type:'OP'})), ...mdfs.map(o=>({...o, _type:'MDF'}))]
+    .filter(p=>p.payePar && p.datePaiement)
+    .sort((a,b)=> new Date(a.datePaiement) - new Date(b.datePaiement));
+}
+function _lignesPlan(date){ return _piecesPayees().filter(p=>jourLocal(p.datePaiement)===date); }
+function _totauxPlan(lignes){ return lignes.reduce((t,p)=>{ const v = _ventilerUSD(p); t.usd+=v.usd; t.cdf+=v.cdf; return t; }, {usd:0, cdf:0}); }
+function _cpteADebiter(p){ return nomCompteCourt(p.compte) + (p.imputationCode ? ' / '+p.imputationCode : ''); }
+function _obsPlan(p){
+  const parts = [];
+  if(p.urgence) parts.push('URGENCE — ordre de '+(p.autoriteOrdonnatrice||'?')+(p.fonctionAutorite ? ' ('+p.fonctionAutorite+')' : '')+(p.regularisePar ? ' — régularisé' : ' — à régulariser'));
+  else if(p.programme) parts.push('Programmé DIRFIN'+(p.datePaiement && p.programme.date!==jourLocal(p.datePaiement) ? ' ('+fmtDateFr(p.programme.date)+')' : ''));
+  if(p.mode && p.mode!=='Espèces') parts.push(p.mode);
+  if(p.devise==='EUR') parts.push('EUR '+fmt2(p.montant));
+  if(p.annule) parts.push('ANNULÉE après paiement');
+  return parts.join(' · ');
+}
+function renderPlan(){
+  const date = document.getElementById('pl_date').value || jourLocal(new Date());
+  const q = (document.getElementById('pl_recherche').value||'').trim().toLowerCase();
+  const lignes = q
+    ? _piecesPayees().filter(p=>[p.numero, p.beneficiaire, p.objet, String(p.montant), p.autoriteOrdonnatrice, p.payePar].some(v=>String(v||'').toLowerCase().includes(q)))
+    : _lignesPlan(date);
+  const t = _totauxPlan(lignes);
+  const nUrg = lignes.filter(p=>p.urgence).length;
+  document.getElementById('pl_totaux').innerHTML = `
+    <div class="card"><b>${lignes.length}</b><span>Décaissement(s) ${q ? 'trouvé(s)' : 'du '+fmtDateFr(date)}</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.usd)}</b><span>Total USD</span></div>
+    <div class="card"><b style="font-size:18px">${fmt2(t.cdf)}</b><span>Total CDF</span></div>
+    <div class="card"><b style="${nUrg?'color:var(--accent)':''}">${nUrg}</b><span>Dont urgence(s) hors programme</span></div>`;
+  document.getElementById('pl_body').innerHTML = lignes.map((p,i)=>{
+    const v = _ventilerUSD(p);
+    return `<tr class="${p.urgence?'ligne-urgence':''}"><td>${i+1}</td><td style="white-space:nowrap">${fmtDateFr(jourLocal(p.datePaiement))}</td><td><b>${heureLocale(p.datePaiement)}</b></td>
+      <td style="white-space:nowrap">${escapeHtml(p.numero)}</td><td>${escapeHtml(p.beneficiaire)}</td><td>${escapeHtml(p.objet||p.imputationLabel||'')}</td>
+      <td style="text-align:right">${v.usd?fmt2(v.usd):''}</td><td style="text-align:right">${v.cdf?fmt2(v.cdf):''}</td>
+      <td>${escapeHtml(_cpteADebiter(p))}</td><td>${p.urgence?'<span class="badge-urgence">⚡</span> ':''}${escapeHtml(_obsPlan(p))}</td><td>${escapeHtml(p.payePar)}</td></tr>`;
+  }).join('') || `<tr><td colspan="11">${q ? 'Aucun décaissement ne correspond à la recherche.' : 'Aucun décaissement enregistré le '+fmtDateFr(date)+'.'}</td></tr>`;
+  renderPlanStatut(date, !!q);
+  renderCalendrierPlan(date);
+}
+function renderPlanStatut(date, enRecherche){
+  const st = document.getElementById('pl_statut'), act = document.getElementById('pl_actions');
+  if(enRecherche){
+    st.innerHTML = '<div class="pl-etat ouvert">🔎 Résultats sur toutes les dates — videz la recherche pour revenir au plan du '+fmtDateFr(date)+'.</div>';
+    act.innerHTML = ''; return;
+  }
+  const plan = plansDecaissement[date];
+  let cls = 'ouvert', txt = '🟢 Journée ouverte — chaque décaissement s\'inscrit automatiquement ici, avec son heure exacte.';
+  if(plan && plan.cloturePar){
+    const nbVisas = VISAS_PLAN.filter(v=>plan.visas && plan.visas[v.cle]).length;
+    cls = nbVisas===VISAS_PLAN.length ? 'signe' : 'cloture';
+    txt = `🔒 Journée clôturée par ${escapeHtml(plan.cloturePar)} le ${fmtDateFr(jourLocal(plan.dateCloture))} à ${heureLocale(plan.dateCloture)} — visas : `
+      + VISAS_PLAN.map(v=>{ const x = plan.visas && plan.visas[v.cle]; return escapeHtml(v.titre)+' '+(x ? '✅ '+escapeHtml(x.nom||x.par)+' ('+heureLocale(x.le)+')' : '⏳'); }).join(' · ');
+    const ecarts = Object.entries(plan.comptage||{}).filter(([,c])=>c!==null && c!==undefined).map(([d,c])=>{
+      const e = c - (plan.soldeTheorique[d]||0);
+      return `${d} : compté ${fmt2(c)} / théorique ${fmt2(plan.soldeTheorique[d]||0)} → écart <b style="color:${Math.abs(e)>0.004?'var(--rouge)':'var(--vert)'}">${fmt2(e)}</b>`;
+    });
+    if(ecarts.length) txt += '<br>🧮 Comptage du coffre : '+ecarts.join(' · ');
+    if(plan.reportees && plan.reportees.length) txt += '<br>↪️ '+escapeHtml(_texteReports(plan));
+  }
+  st.innerHTML = `<div class="pl-etat ${cls}">${txt}</div>`;
+  let boutons = '';
+  if(!(plan && plan.cloturePar)){
+    if(peutPayer() && date <= jourLocal(new Date())) boutons += '<button class="btn" onclick="cloturerJourneeCaisse()">🔒 Clôturer la journée de caisse</button> ';
+  } else {
+    VISAS_PLAN.forEach(v=>{
+      if(!(plan.visas && plan.visas[v.cle]) && peutViser(v.cle))
+        boutons += `<button class="btn vert" data-cle="${v.cle}" onclick="viserPlan(this.dataset.cle)">✍️ Viser — ${escapeHtml(v.titre)}</button> `;
+    });
+  }
+  act.innerHTML = boutons;
+}
+function _soldeCaisseAu(devise, limite){
+  return caisseMouvements.filter(m=>m.devise===devise && new Date(m.dateHeure) <= limite)
+    .reduce((s,m)=> s + (m.type==='Alimentation' ? Number(m.montant||0) : -Number(m.montant||0)), 0);
+}
+function _jourOuvrableSuivant(date){
+  const d = new Date(date+'T12:00');
+  do { d.setDate(d.getDate()+1); } while(d.getDay()===0 || d.getDay()===6);
+  return jourLocal(d);
+}
+function _texteReports(plan){
+  if(!plan || !plan.reportees || !plan.reportees.length) return '';
+  return plan.reportees.length+' pièce(s) programmée(s) non payée(s), reportée(s) au '+fmtDateFr(plan.reporteAu)+' (motif : '+plan.motifReport+') : '
+    + plan.reportees.map(r=>r.numero+' — '+r.beneficiaire+' — '+fmt2(r.montant)+' '+r.devise).join(' ; ');
+}
+function cloturerJourneeCaisse(){
+  if(!peutPayer()){ alert('Seul un compte Caissier peut clôturer la journée de caisse.'); return; }
+  const date = document.getElementById('pl_date').value;
+  if(!date || planEstCloture(date)) return;
+  if(date > jourLocal(new Date())){ alert('Impossible de clôturer une journée future.'); return; }
+  const lignes = _lignesPlan(date);
+  const finJour = new Date(date+'T23:59:59.999');
+  const soldeTheorique = {};
+  ['CDF','USD','EUR'].forEach(d=>{ soldeTheorique[d] = _soldeCaisseAu(d, finJour); });
+  const comptage = {};
+  for(const d of ['USD','CDF']){
+    const r = prompt(`Clôture du ${fmtDateFr(date)} — comptage physique du coffre en ${d}\n(solde théorique : ${fmt2(soldeTheorique[d])} ${d})\n\nMontant réellement compté (laisser vide si non compté) :`, '');
+    if(r===null) return;
+    comptage[d] = r.trim()==='' ? null : Number(r.replace(/\s/g,'').replace(',','.'));
+    if(comptage[d]!==null && isNaN(comptage[d])){ alert('Montant invalide.'); return; }
+  }
+  // Une pièce programmée est toujours payée : si la caisse n'a pas pu la payer ce jour-là
+  // (liquidité, bénéficiaire absent…), elle est reportée au jour ouvrable suivant, avec motif,
+  // et le report reste visible du DIRFIN et de l'AB. La caisse n'est jamais forcée à payer
+  // au-delà de ce qu'elle a réellement.
+  const nonPayees = _piecesAPayer().filter(p=>p.programme && p.programme.date<=date);
+  const jourSuivant = _jourOuvrableSuivant(date);
+  let motifReport = '';
+  if(nonPayees.length){
+    const r = prompt(`${nonPayees.length} pièce(s) programmée(s) n'ont pas été payées :\n`
+      + nonPayees.slice(0,8).map(p=>' • '+p.numero+' — '+p.beneficiaire+' — '+fmtMontant(p.montant)+' '+p.devise).join('\n')
+      + (nonPayees.length>8 ? '\n • …' : '')
+      + `\n\nElles seront reportées au ${fmtDateFr(jourSuivant)}. Motif du report (obligatoire, ex. liquidité insuffisante) :`, '');
+    if(r===null) return;
+    motifReport = r.trim();
+    if(!motifReport){ alert('Le motif du report est obligatoire.'); return; }
+  }
+  const t = _totauxPlan(lignes);
+  if(!confirm(`Clôturer la journée de caisse du ${fmtDateFr(date)} ?\n\n${lignes.length} décaissement(s) — ${fmt2(t.usd)} USD · ${fmt2(t.cdf)} CDF`
+    + (nonPayees.length ? `\n${nonPayees.length} pièce(s) programmée(s) reportée(s) au ${fmtDateFr(jourSuivant)}` : '')
+    + `\n\nAprès clôture, plus aucun décaissement ne pourra être inscrit à cette date. Le plan passera au visa de la Conseillère des Finances, du Directeur des Finances et de l'Administrateur du Budget.`)) return;
+  const maintenant = new Date().toISOString();
+  const reportees = nonPayees.map(x=>{
+    const p = _trouverPiece(x._type, x.numero);
+    p.programme.reports = (p.programme.reports||[]).concat({de: p.programme.date, a: jourSuivant, motif: motifReport, par: sessionUser.username, le: maintenant});
+    p.programme.date = jourSuivant;
+    enregistrerAudit('Report paiement programmé '+x._type, x.numero+' — reporté au '+jourSuivant+' — motif : '+motifReport);
+    return {type: x._type, numero: x.numero, beneficiaire: x.beneficiaire, montant: x.montant, devise: x.devise};
+  });
+  if(reportees.length){ save(LS.ops, ops); save(LS.mdfs, mdfs); }
+  plansDecaissement[date] = { cloturePar: sessionUser.username, dateCloture: maintenant, nbLignes: lignes.length, totaux: t, soldeTheorique, comptage, visas: {}, nbImpressions: 0,
+    reportees, motifReport, reporteAu: reportees.length ? jourSuivant : null };
+  save(LS.plans, plansDecaissement);
+  const ecartTxt = Object.entries(comptage).filter(([,c])=>c!==null).map(([d,c])=>d+' écart '+fmt2(c-soldeTheorique[d])).join(', ');
+  enregistrerAudit('Clôture journée de caisse', date+' — '+lignes.length+' décaissement(s) — '+fmt2(t.usd)+' USD · '+fmt2(t.cdf)+' CDF'+(ecartTxt ? ' — '+ecartTxt : ''));
+  renderPlan(); renderDashboard();
+}
+function viserPlan(cle){
+  const date = document.getElementById('pl_date').value;
+  const plan = plansDecaissement[date];
+  const v = VISAS_PLAN.find(x=>x.cle===cle);
+  if(!plan || !plan.cloturePar){ alert('Le plan doit d\'abord être clôturé par la caisse.'); return; }
+  if(!v || !peutViser(cle)){ alert('Ce visa est réservé : '+(v ? v.titre : '?')+'.'); return; }
+  plan.visas = plan.visas || {};
+  if(plan.visas[cle]) return;
+  if(Object.values(plan.visas).some(x=>x.par===sessionUser.username)){ alert('Vous avez déjà visé ce plan : chaque visa doit être donné par une personne différente.'); return; }
+  if(!confirm(`Viser le plan de décaissement du ${fmtDateFr(date)} en qualité de « ${v.titre} » ?\n\n${plan.nbLignes} décaissement(s) — ${fmt2(plan.totaux.usd)} USD · ${fmt2(plan.totaux.cdf)} CDF`)) return;
+  plan.visas[cle] = {par: sessionUser.username, nom: sessionUser.nom, le: new Date().toISOString()};
+  save(LS.plans, plansDecaissement);
+  enregistrerAudit('Visa plan de décaissement', date+' — '+v.titre);
+  renderPlan();
+}
+function planDecalerJour(n){
+  const el = document.getElementById('pl_date');
+  const d = new Date((el.value || jourLocal(new Date()))+'T12:00');
+  d.setDate(d.getDate()+n); el.value = jourLocal(d);
+  document.getElementById('pl_recherche').value = '';
+  renderPlan();
+}
+function planDecalerMois(n){
+  const el = document.getElementById('pl_date');
+  const d = new Date((el.value || jourLocal(new Date()))+'T12:00');
+  d.setDate(1); d.setMonth(d.getMonth()+n); el.value = jourLocal(d);
+  renderPlan();
+}
+function planChoisirJour(j){
+  document.getElementById('pl_recherche').value = '';
+  document.getElementById('pl_date').value = j;
+  renderPlan();
+}
+function renderCalendrierPlan(date){
+  const [a, m] = date.split('-').map(Number);
+  const premier = new Date(a, m-1, 1), nbJours = new Date(a, m, 0).getDate();
+  const decalage = (premier.getDay()+6) % 7;   // semaine commençant le lundi
+  const parJour = {};
+  _piecesPayees().forEach(p=>{
+    const j = jourLocal(p.datePaiement);
+    if(j.slice(0,7)!==date.slice(0,7)) return;
+    parJour[j] = parJour[j] || {n:0, urg:0};
+    parJour[j].n++; if(p.urgence) parJour[j].urg++;
+  });
+  let html = `<div class="cal-entete"><button class="btn secondaire petit" onclick="planDecalerMois(-1)">◀</button>
+    <span style="text-transform:capitalize">${premier.toLocaleDateString('fr-FR',{month:'long', year:'numeric'})}</span>
+    <button class="btn secondaire petit" onclick="planDecalerMois(1)">▶</button></div><div class="cal-grille">`;
+  html += ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map(j=>`<div class="cal-jsem">${j}</div>`).join('');
+  for(let i=0; i<decalage; i++) html += '<div class="cal-jour vide"></div>';
+  for(let d=1; d<=nbJours; d++){
+    const j = a+'-'+_pad2(m)+'-'+_pad2(d), info = parJour[j], plan = plansDecaissement[j];
+    const etat = plan && plan.cloturePar ? (VISAS_PLAN.every(v=>plan.visas && plan.visas[v.cle]) ? '✅ signé' : '🔒 clôturé') : '';
+    html += `<button type="button" class="cal-jour${j===date?' choisi':''}" onclick="planChoisirJour('${j}')"><b>${d}</b>`
+      + (info ? `<span class="cal-info">💸 ${info.n} décaiss.</span>` : '')
+      + (info && info.urg ? `<span class="cal-info" style="color:var(--accent)">⚡ ${info.urg} urgence(s)</span>` : '')
+      + (etat ? `<span class="cal-info">${etat}</span>` : '') + '</button>';
+  }
+  document.getElementById('pl_calendrier').innerHTML = html + '</div>';
+}
+
+/* ---------- Impression A4 paysage, ajustée à 1 page (comme « 1 page en largeur × 1 en hauteur ») ---------- */
+function _entetePaysage(){
+  return `<div class="pp-entete"><img src="${escapeHtml(logo||'')}" alt=""><div class="pp-lignes">
+    <div>REPUBLIQUE DEMOCRATIQUE DU CONGO</div><div>ENSEIGNEMENT SUPERIEUR ET UNIVERSITAIRE</div>
+    <div class="pp-inst">INSTITUT SUPERIEUR DES TECHNIQUES MEDICALES DE KINSHASA</div>
+    <div>ADMINISTRATION DU BUDGET • DIRECTION DES FINANCES</div></div><div></div></div>`;
+}
+function _signaturesPaysage(blocs){
+  return `<div class="pp-sign" style="grid-template-columns:repeat(${blocs.length},1fr)">` + blocs.map(b=>`<div>
+    <div>${escapeHtml(b.titre)}</div><div class="pp-espace"></div><div>……………………………………</div>
+    ${b.visa ? `<div class="pp-visa">Visé électroniquement par ${escapeHtml(b.visa.nom||b.visa.par)} le ${fmtDateFr(jourLocal(b.visa.le))} à ${heureLocale(b.visa.le)}</div>` : ''}
+  </div>`).join('') + '</div>';
+}
+function _imprimerPaysage(html, actionAudit, cibleAudit){
+  ['print-op-content','print-mdf-content','print-ben-content','print-journal-content'].forEach(id=>{
+    const el = document.getElementById(id); if(el) el.style.display = 'none';
+  });
+  const box = document.getElementById('print-paysage-content');
+  box.innerHTML = html; box.style.display = 'block';
+  // Mesure hors écran puis réduction proportionnelle si le contenu dépasse la hauteur utile
+  // de la page (210 mm − 2 × 10 mm de marges), comme « 1 page en largeur × 1 en hauteur » dans
+  // Excel. Le tableau est élargi d'autant pour toujours occuper toute la largeur. La réduction
+  // est plafonnée (police ≈ 8 pt au minimum) : au-delà, l'impression passe sur 2 pages avec
+  // en-têtes de colonnes répétés, plutôt que de devenir illisible.
+  const ZOOM_MIN = 0.85;
+  const area = document.getElementById('print-area');
+  const styleAvant = area.getAttribute('style');
+  area.setAttribute('style', 'display:block;position:absolute;left:-10000px;top:0;visibility:hidden');
+  const page = box.firstElementChild;
+  page.style.zoom = ''; page.style.width = '';
+  const hauteurUtile = 190 * 96 / 25.4;
+  let zoom = 1;
+  for(let i=0; i<4; i++){
+    page.style.width = (277/zoom).toFixed(1)+'mm';
+    const h = page.getBoundingClientRect().height;
+    if(h*zoom <= hauteurUtile + 1) break;
+    zoom = Math.max(ZOOM_MIN, hauteurUtile / h);
+    if(zoom===ZOOM_MIN){ page.style.width = (277/zoom).toFixed(1)+'mm'; break; }
+  }
+  if(zoom < 1) page.style.zoom = zoom.toFixed(3); else page.style.width = '';
+  if(styleAvant===null) area.removeAttribute('style'); else area.setAttribute('style', styleAvant);
+  const st = document.createElement('style');
+  st.textContent = '@page{size:A4 landscape;margin:10mm}';
+  document.head.appendChild(st);
+  enregistrerAudit(actionAudit, cibleAudit);
+  setTimeout(()=>{ window.print(); box.style.display = 'none'; st.remove(); }, 150);
+}
+function imprimerPlan(){
+  const date = document.getElementById('pl_date').value;
+  if(!date){ alert('Choisissez une date.'); return; }
+  const lignes = _lignesPlan(date), t = _totauxPlan(lignes), plan = plansDecaissement[date];
+  const nUrg = lignes.filter(p=>p.urgence).length;
+  const corps = lignes.map(p=>{ const v = _ventilerUSD(p); return `<tr><td class="c">${fmtDateFr(jourLocal(p.datePaiement))}</td><td class="c">${heureLocale(p.datePaiement)}</td>
+    <td class="c">${escapeHtml(p.numero)}</td><td>${escapeHtml(p.beneficiaire)}</td><td>${escapeHtml(p.objet||p.imputationLabel||'')}</td>
+    <td class="n">${v.usd?fmt2(v.usd):''}</td><td class="n">${v.cdf?fmt2(v.cdf):''}</td><td>${escapeHtml(_cpteADebiter(p))}</td><td>${escapeHtml(_obsPlan(p))}</td></tr>`; }).join('')
+    || '<tr><td colspan="9" class="c">Aucun décaissement ce jour.</td></tr>';
+  const etat = plan && plan.cloturePar
+    ? 'Journée clôturée par '+escapeHtml(plan.cloturePar)+' le '+fmtDateFr(jourLocal(plan.dateCloture))+' à '+heureLocale(plan.dateCloture)
+    : 'PROVISOIRE — journée non clôturée';
+  const html = `<div class="pp-page">${_entetePaysage()}
+    <div class="pp-titre">PLAN DE DÉCAISSEMENT JOURNALIER (USD/CDF)</div>
+    <div class="pp-sous">Journée du ${fmtDateFr(date)} — ${lignes.length} décaissement(s)${nUrg ? ', dont '+nUrg+' urgence(s) hors programme' : ''}</div>
+    <table class="pp-table"><thead>
+      <tr><th rowspan="2">DATE</th><th rowspan="2">HEURE</th><th rowspan="2">N° PIÈCE</th><th rowspan="2">BENEF.</th><th rowspan="2">LIBELLE</th><th colspan="2">MONTANT</th><th rowspan="2">CPTE. A DEBITER</th><th rowspan="2">OBS.</th></tr>
+      <tr><th>USD</th><th>CDF</th></tr></thead>
+      <tbody>${corps}<tr class="total"><td colspan="5" class="c">TOTAL</td><td class="n">${fmt2(t.usd)}</td><td class="n">${fmt2(t.cdf)}</td><td colspan="2"></td></tr></tbody></table>
+    ${plan && plan.reportees && plan.reportees.length ? `<div style="font-size:9pt;margin-top:4px">↪ ${escapeHtml(_texteReports(plan))}</div>` : ''}
+    <div class="pp-fait">Fait à Kinshasa, le ${fmtDateFr(date)}</div>
+    ${_signaturesPaysage(VISAS_PLAN.map(v=>({titre: v.titre, visa: plan && plan.visas ? plan.visas[v.cle] : null})))}
+    <div class="pp-pied"><span>${etat}</span><span>SIG-OP — imprimé le ${new Date().toLocaleString('fr-FR')} par ${escapeHtml(sessionUser.nom)}</span></div></div>`;
+  if(plan){ plan.nbImpressions = (plan.nbImpressions||0) + 1; save(LS.plans, plansDecaissement); }
+  _imprimerPaysage(html, 'Impression plan de décaissement', date+(plan && plan.cloturePar ? '' : ' (provisoire)'));
+}
+function imprimerDocPayer(){
+  const lignes = _docPayerLignes(), t = _totauxDocPayer(lignes);
+  const corps = lignes.map(p=>{ const v = _ventilerUSD(p); return `<tr><td class="c">${fmtDateFr(p.date)}</td><td>${escapeHtml(p.beneficiaire)}</td><td>${escapeHtml(p.objet||p.imputationLabel||'')}</td>
+    <td class="n">${v.cdf?fmt2(v.cdf):''}</td><td class="n">${v.usd?fmt2(v.usd):''}</td><td class="n">${fmt2(v.cdfEnUsd)}</td><td class="n">${fmt2(v.totalUsd)}</td>
+    <td>${escapeHtml(p.observation||'')}</td><td class="c">${escapeHtml(p.numero)}</td><td class="c">${p.programme ? fmtDateFr(p.programme.date) : ''}</td></tr>`; }).join('')
+    || '<tr><td colspan="10" class="c">Aucune pièce.</td></tr>';
+  const html = `<div class="pp-page">${_entetePaysage()}
+    <div class="pp-titre">DOCUMENT À PAYER — suivi et total des dépenses</div>
+    <div class="pp-resume"><span>Taux CDF pour 1 USD : <b>${fmtMontant(rates.usd_cdf)}</b></span><span>Total CDF : <b>${fmt2(t.cdf)}</b></span>
+      <span>Total en USD : <b>${fmt2(t.usd)}</b></span><span>Équivalent USD des montants CDF : <b>${fmt2(t.cdfEnUsd)}</b></span><span>TOTAL GÉNÉRAL USD : <b>${fmt2(t.total)}</b></span></div>
+    <table class="pp-table"><thead><tr><th>DATE</th><th>NOMS</th><th>LIBELLÉ</th><th>MONTANT CDF</th><th>MONTANT USD</th><th>CDF CONVERTIS EN USD</th><th>TOTAL USD</th><th>OBSERVATION</th><th>N° PIÈCE</th><th>PROGRAMMÉ POUR LE</th></tr></thead>
+      <tbody>${corps}<tr class="total"><td colspan="3" class="c">TOTAL</td><td class="n">${fmt2(t.cdf)}</td><td class="n">${fmt2(t.usd)}</td><td class="n">${fmt2(t.cdfEnUsd)}</td><td class="n">${fmt2(t.total)}</td><td colspan="3"></td></tr></tbody></table>
+    <div class="pp-fait">Fait à Kinshasa, le ${fmtDateFr(jourLocal(new Date()))}</div>
+    ${_signaturesPaysage([{titre:'Le Directeur des Finances'}])}
+    <div class="pp-pied"><span>${lignes.length} pièce(s)</span><span>SIG-OP — imprimé le ${new Date().toLocaleString('fr-FR')} par ${escapeHtml(sessionUser.nom)}</span></div></div>`;
+  _imprimerPaysage(html, 'Impression document à payer', lignes.length+' pièce(s)');
+}
+
+/* ===================== EXPORT EXCEL (.xlsx) DÉJÀ MIS EN PAGE ===================== */
+/* Fichier .xlsx produit sans aucune bibliothèque (l'application reste hors ligne) : un zip
+   « stocké » contenant le classeur. La mise en page est réglée d'avance comme dans les
+   modèles de la Direction des Finances : A4 paysage, ajusté à 1 page en largeur × 1 page en
+   hauteur, police Arial 9, bordures, en-têtes répétés, zone de signatures. */
+const _CRC_TABLE = (()=>{ const t = new Uint32Array(256); for(let n=0; n<256; n++){ let c = n; for(let k=0; k<8; k++) c = c & 1 ? 0xEDB88320 ^ (c>>>1) : c>>>1; t[n] = c>>>0; } return t; })();
+function _crc32(u8){ let c = 0xFFFFFFFF; for(let i=0; i<u8.length; i++) c = _CRC_TABLE[(c ^ u8[i]) & 0xFF] ^ (c>>>8); return (c ^ 0xFFFFFFFF)>>>0; }
+function _zipStocke(fichiers){
+  const enc = new TextEncoder(), parts = [], central = [];
+  const d = new Date();
+  const heureDos = (d.getHours()<<11) | (d.getMinutes()<<5) | (d.getSeconds()>>1);
+  const dateDos = ((d.getFullYear()-1980)<<9) | ((d.getMonth()+1)<<5) | d.getDate();
+  let offset = 0;
+  fichiers.forEach(f=>{
+    const nom = enc.encode(f.nom), data = f.contenu instanceof Uint8Array ? f.contenu : enc.encode(f.contenu), crc = _crc32(data);
+    const lh = new DataView(new ArrayBuffer(30));
+    lh.setUint32(0, 0x04034b50, true); lh.setUint16(4, 20, true); lh.setUint16(6, 0x0800, true); lh.setUint16(8, 0, true);
+    lh.setUint16(10, heureDos, true); lh.setUint16(12, dateDos, true); lh.setUint32(14, crc, true);
+    lh.setUint32(18, data.length, true); lh.setUint32(22, data.length, true); lh.setUint16(26, nom.length, true); lh.setUint16(28, 0, true);
+    parts.push(new Uint8Array(lh.buffer), nom, data);
+    const ch = new DataView(new ArrayBuffer(46));
+    ch.setUint32(0, 0x02014b50, true); ch.setUint16(4, 20, true); ch.setUint16(6, 20, true); ch.setUint16(8, 0x0800, true); ch.setUint16(10, 0, true);
+    ch.setUint16(12, heureDos, true); ch.setUint16(14, dateDos, true); ch.setUint32(16, crc, true);
+    ch.setUint32(20, data.length, true); ch.setUint32(24, data.length, true); ch.setUint16(28, nom.length, true);
+    ch.setUint32(42, offset, true);
+    central.push(new Uint8Array(ch.buffer), nom);
+    offset += 30 + nom.length + data.length;
+  });
+  const tailleCentral = central.reduce((s,a)=>s+a.length, 0);
+  const fin = new DataView(new ArrayBuffer(22));
+  fin.setUint32(0, 0x06054b50, true); fin.setUint16(8, fichiers.length, true); fin.setUint16(10, fichiers.length, true);
+  fin.setUint32(12, tailleCentral, true); fin.setUint32(16, offset, true);
+  const tout = [...parts, ...central, new Uint8Array(fin.buffer)];
+  const out = new Uint8Array(tout.reduce((s,a)=>s+a.length, 0));
+  let pos = 0; tout.forEach(a=>{ out.set(a, pos); pos += a.length; });
+  return out;
+}
+// Styles (index cellXfs) : 0 défaut · 1 titre · 2 ligne d'en-tête · 3 en-tête de tableau · 4 texte
+// · 5 nombre · 6 libellé total · 7 nombre total · 8 signature · 9 simple · 10 centré · 11 institut
+// · 12 texte urgence · 13 nombre urgence · 14 libellé gras · 15 nombre gras · 16 visa (petit)
+const XS = {titre:1, entete:2, th:3, txt:4, num:5, totLbl:6, totNum:7, sign:8, simple:9, centre:10, inst:11, txtUrg:12, numUrg:13, lblGras:14, numGras:15, visa:16};
+const _XLSX_STYLES = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<numFmts count="1"><numFmt numFmtId="164" formatCode="#,##0.00"/></numFmts>
+<fonts count="6"><font><sz val="9"/><name val="Arial"/></font><font><b/><sz val="9"/><name val="Arial"/></font>
+<font><b/><sz val="14"/><color rgb="FF142C78"/><name val="Arial"/></font><font><b/><sz val="10"/><name val="Arial"/></font>
+<font><b/><sz val="11"/><color rgb="FF142C78"/><name val="Arial"/></font><font><i/><sz val="8"/><name val="Arial"/></font></fonts>
+<fills count="5"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill>
+<fill><patternFill patternType="solid"><fgColor rgb="FFDCE3F5"/><bgColor indexed="64"/></patternFill></fill>
+<fill><patternFill patternType="solid"><fgColor rgb="FFEEEEEE"/><bgColor indexed="64"/></patternFill></fill>
+<fill><patternFill patternType="solid"><fgColor rgb="FFFFF1EA"/><bgColor indexed="64"/></patternFill></fill></fills>
+<borders count="2"><border><left/><right/><top/><bottom/><diagonal/></border>
+<border><left style="thin"><color auto="1"/></left><right style="thin"><color auto="1"/></right><top style="thin"><color auto="1"/></top><bottom style="thin"><color auto="1"/></bottom><diagonal/></border></borders>
+<cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
+<cellXfs count="17">
+<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
+<xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+<xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+<xf numFmtId="164" fontId="0" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="1" fillId="3" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+<xf numFmtId="164" fontId="1" fillId="3" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+<xf numFmtId="0" fontId="4" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+<xf numFmtId="0" fontId="0" fillId="4" borderId="1" xfId="0" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center" wrapText="1"/></xf>
+<xf numFmtId="164" fontId="0" fillId="4" borderId="1" xfId="0" applyNumberFormat="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment vertical="center"/></xf>
+<xf numFmtId="164" fontId="1" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1" applyAlignment="1"><alignment horizontal="left" vertical="center"/></xf>
+<xf numFmtId="0" fontId="5" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment horizontal="center" vertical="top" wrapText="1"/></xf>
+</cellXfs>
+<cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles>
+</styleSheet>`;
+function _colXL(i){ let s = ''; i++; while(i>0){ const r = (i-1) % 26; s = String.fromCharCode(65+r) + s; i = Math.floor((i-1)/26); } return s; }
+function _xmlEsc(v){ return String(v).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''); }
+/* Logo de l'institut pour les exports Excel : on repart de l'image déjà affichée dans l'en-tête
+   et on la redessine en PNG (format toujours accepté par Excel, quel que soit le fichier chargé
+   dans Paramètres), en conservant ses proportions. */
+function _logoPourExcel(){
+  if(!logo) return null;
+  // Une copie du logo déjà décodée à l'écran (en-tête, filigrane ou écran de connexion).
+  const img = ['#logoBox img', '#watermarkImg', '#loginLogo'].map(s=>document.querySelector(s))
+    .find(el=>el && el.src===logo && el.complete && el.naturalWidth);
+  if(!img){
+    // Aucune copie prête : on reprend directement l'image enregistrée si Excel sait la lire.
+    const m = /^data:image\/png;base64,(.+)$/.exec(logo);
+    if(!m) return null;
+    const bin = atob(m[1]), octets = new Uint8Array(bin.length);
+    for(let i=0; i<bin.length; i++) octets[i] = bin.charCodeAt(i);
+    // Dimensions lues dans l'en-tête PNG (IHDR), pour garder les proportions.
+    const dv = new DataView(octets.buffer);
+    return {octets, w: dv.getUint32(16) || 1, h: dv.getUint32(20) || 1};
+  }
+  try {
+    const r = Math.min(1, 300 / Math.max(img.naturalWidth, img.naturalHeight));
+    const w = Math.max(1, Math.round(img.naturalWidth*r)), h = Math.max(1, Math.round(img.naturalHeight*r));
+    const c = document.createElement('canvas'); c.width = w; c.height = h;
+    c.getContext('2d').drawImage(img, 0, 0, w, h);
+    const bin = atob(c.toDataURL('image/png').split(',')[1]);
+    const octets = new Uint8Array(bin.length);
+    for(let i=0; i<bin.length; i++) octets[i] = bin.charCodeAt(i);
+    return {octets, w, h};
+  } catch(e){ return null; }
+}
+/* def : { feuille, colonnes:[largeurs], lignes:[{ht, c:[{v, s, f}|null, …]}], fusions:['A1:I1', …], titres:'$9:$10',
+           logoCm: hauteur du logo en cm, ancré en A1 (0 ou absent = pas de logo) } */
+function _telechargerXlsx(nomFichier, def){
+  const logoXl = def.logoCm ? _logoPourExcel() : null;
+  const emuH = logoXl ? Math.round(def.logoCm * 360000) : 0;
+  const emuW = logoXl ? Math.round(emuH * logoXl.w / logoXl.h) : 0;
+  const lignesXml = def.lignes.map((l, i)=>{
+    const r = i+1;
+    const cellules = (l.c||[]).map((c, j)=>{
+      if(!c) return '';
+      const ref = _colXL(j)+r, s = c.s!==undefined ? ` s="${c.s}"` : '';
+      if(c.f) return `<c r="${ref}"${s}><f>${_xmlEsc(c.f)}</f>${typeof c.v==='number' ? `<v>${c.v}</v>` : ''}</c>`;
+      if(c.v===undefined || c.v===null || c.v==='') return `<c r="${ref}"${s}/>`;
+      if(typeof c.v==='number') return `<c r="${ref}"${s}><v>${c.v}</v></c>`;
+      return `<c r="${ref}"${s} t="inlineStr"><is><t xml:space="preserve">${_xmlEsc(c.v)}</t></is></c>`;
+    }).join('');
+    return `<row r="${r}"${l.ht ? ` ht="${l.ht}" customHeight="1"` : ''}>${cellules}</row>`;
+  }).join('');
+  const feuille = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<sheetPr><pageSetUpPr fitToPage="1"/></sheetPr>
+<sheetViews><sheetView workbookViewId="0" showGridLines="0"/></sheetViews>
+<sheetFormatPr defaultRowHeight="13.8"/>
+<cols>${def.colonnes.map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join('')}</cols>
+<sheetData>${lignesXml}</sheetData>
+${def.fusions && def.fusions.length ? `<mergeCells count="${def.fusions.length}">${def.fusions.map(f=>`<mergeCell ref="${f}"/>`).join('')}</mergeCells>` : ''}
+<printOptions horizontalCentered="1"/>
+<pageMargins left="0.4" right="0.4" top="0.5" bottom="0.5" header="0.3" footer="0.3"/>
+<pageSetup paperSize="9" orientation="landscape" fitToWidth="1" fitToHeight="1"/>
+<headerFooter><oddFooter>&amp;L&amp;8SIG-OP — ISTM/Kinshasa&amp;R&amp;8Page &amp;P / &amp;N</oddFooter></headerFooter>
+${logoXl ? '<drawing r:id="rId1"/>' : ''}
+</worksheet>`;
+  const nomFeuille = _xmlEsc(def.feuille);
+  const fichiers = [
+    {nom:'[Content_Types].xml', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="png" ContentType="image/png"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>${logoXl ? '<Override PartName="/xl/drawings/drawing1.xml" ContentType="application/vnd.openxmlformats-officedocument.drawing+xml"/>' : ''}</Types>`},
+    {nom:'_rels/.rels', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`},
+    {nom:'xl/workbook.xml', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="${nomFeuille}" sheetId="1" r:id="rId1"/></sheets>${def.titres ? `<definedNames><definedName name="_xlnm.Print_Titles" localSheetId="0">'${nomFeuille}'!${def.titres}</definedName></definedNames>` : ''}<calcPr calcId="191029" fullCalcOnLoad="1"/></workbook>`},
+    {nom:'xl/_rels/workbook.xml.rels', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`},
+    {nom:'xl/styles.xml', contenu:_XLSX_STYLES},
+    {nom:'xl/worksheets/sheet1.xml', contenu:feuille}
+  ];
+  if(logoXl){
+    fichiers.push(
+      {nom:'xl/worksheets/_rels/sheet1.xml.rels', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing" Target="../drawings/drawing1.xml"/></Relationships>`},
+      {nom:'xl/drawings/_rels/drawing1.xml.rels', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/logo.png"/></Relationships>`},
+      {nom:'xl/drawings/drawing1.xml', contenu:`<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xdr:wsDr xmlns:xdr="http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><xdr:oneCellAnchor><xdr:from><xdr:col>0</xdr:col><xdr:colOff>38100</xdr:colOff><xdr:row>0</xdr:row><xdr:rowOff>19050</xdr:rowOff></xdr:from><xdr:ext cx="${emuW}" cy="${emuH}"/><xdr:pic><xdr:nvPicPr><xdr:cNvPr id="2" name="Logo ISTM"/><xdr:cNvPicPr><a:picLocks noChangeAspect="1"/></xdr:cNvPicPr></xdr:nvPicPr><xdr:blipFill><a:blip r:embed="rId1"/><a:stretch><a:fillRect/></a:stretch></xdr:blipFill><xdr:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${emuW}" cy="${emuH}"/></a:xfrm><a:prstGeom prst="rect"><a:avLst/></a:prstGeom></xdr:spPr></xdr:pic><xdr:clientData/></xdr:oneCellAnchor></xdr:wsDr>`},
+      {nom:'xl/media/logo.png', contenu:logoXl.octets}
+    );
+  }
+  const blob = new Blob([_zipStocke(fichiers)], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = nomFichier; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 4000);
+  return blob;
+}
+/* En-tête officiel commun (lignes 1 à 4) et cellule texte/nombre. */
+function _xlEnteteOfficiel(nbCols, lignes, fusions){
+  const der = _colXL(nbCols-1);
+  ['REPUBLIQUE DEMOCRATIQUE DU CONGO','ENSEIGNEMENT SUPERIEUR ET UNIVERSITAIRE','INSTITUT SUPERIEUR DES TECHNIQUES MEDICALES DE KINSHASA','ADMINISTRATION DU BUDGET  •  DIRECTION DES FINANCES']
+    .forEach((t,i)=>{ lignes.push({ht:16, c:[{v:t, s: i===2 ? XS.inst : XS.entete}]}); fusions.push(`A${i+1}:${der}${i+1}`); });
+}
+function exporterPlanExcel(){
+  const date = document.getElementById('pl_date').value;
+  if(!date){ alert('Choisissez une date.'); return; }
+  const lignesPlan = _lignesPlan(date), plan = plansDecaissement[date];
+  const L = [], F = [];
+  _xlEnteteOfficiel(9, L, F);
+  L.push({});
+  L.push({ht:26, c:[{v:'PLAN DE DECAISSEMENT JOURNALIER (USD/CDF)', s:XS.titre}]}); F.push('A6:I6');
+  L.push({ht:18, c:[{v:'JOURNÉE DU', s:XS.lblGras}, null, {v:fmtDateFr(date), s:XS.lblGras}, null,
+    {v: plan && plan.cloturePar ? 'Clôturée par '+plan.cloturePar+' le '+fmtDateFr(jourLocal(plan.dateCloture))+' à '+heureLocale(plan.dateCloture) : 'PROVISOIRE — journée non clôturée', s:XS.simple}]});
+  L.push({});
+  L.push({ht:20, c:['DATE','HEURE','N° PIÈCE','BENEF.','LIBELLE','MONTANT',null,'CPTE. A DEBITER','OBS.'].map(v=>({v, s:XS.th}))});
+  L.push({ht:18, c:[null,null,null,null,null,'USD','CDF',null,null].map(v=>({v, s:XS.th}))});
+  ['A','B','C','D','E','H','I'].forEach(c=>F.push(`${c}9:${c}10`)); F.push('F9:G9');
+  const premiere = L.length + 1;
+  lignesPlan.forEach(p=>{
+    const v = _ventilerUSD(p), st = p.urgence ? XS.txtUrg : XS.txt, sn = p.urgence ? XS.numUrg : XS.num;
+    L.push({c:[{v:fmtDateFr(jourLocal(p.datePaiement)), s:XS.centre}, {v:heureLocale(p.datePaiement), s:XS.centre}, {v:p.numero, s:XS.centre},
+      {v:p.beneficiaire, s:st}, {v:p.objet||p.imputationLabel||'', s:st}, {v:v.usd ? Math.round(v.usd*100)/100 : '', s:sn}, {v:v.cdf ? Math.round(v.cdf*100)/100 : '', s:sn},
+      {v:_cpteADebiter(p), s:st}, {v:_obsPlan(p), s:st}]});
+  });
+  if(!lignesPlan.length){ L.push({c:[{v:'Aucun décaissement ce jour.', s:XS.txt},null,null,null,null,{v:'',s:XS.num},{v:'',s:XS.num},{v:'',s:XS.txt},{v:'',s:XS.txt}]}); F.push(`A${L.length}:E${L.length}`); }
+  const derniere = L.length, t = _totauxPlan(lignesPlan);
+  L.push({ht:20, c:[{v:'TOTAL', s:XS.totLbl},{v:'',s:XS.totLbl},{v:'',s:XS.totLbl},{v:'',s:XS.totLbl},{v:'',s:XS.totLbl},
+    {f:`SUM(F${premiere}:F${derniere})`, v:Math.round(t.usd*100)/100, s:XS.totNum}, {f:`SUM(G${premiere}:G${derniere})`, v:Math.round(t.cdf*100)/100, s:XS.totNum},
+    {v:'',s:XS.totLbl},{v:'',s:XS.totLbl}]});
+  F.push(`A${L.length}:E${L.length}`);
+  if(plan && plan.reportees && plan.reportees.length){
+    L.push({ht:30, c:[{v:'↪ '+_texteReports(plan), s:XS.visa}]}); F.push(`A${L.length}:I${L.length}`);
+  }
+  L.push({});
+  L.push({ht:18, c:[null,null,null,null,null,null,{v:'Fait à Kinshasa, le '+fmtDateFr(date), s:XS.lblGras}]});
+  L.push({});
+  const rSign = L.length + 1;
+  L.push({ht:22, c:[{v:VISAS_PLAN[0].titre, s:XS.sign},null,null,{v:VISAS_PLAN[1].titre, s:XS.sign},null,null,{v:VISAS_PLAN[2].titre, s:XS.sign}]});
+  F.push(`A${rSign}:C${rSign}`, `D${rSign}:F${rSign}`, `G${rSign}:I${rSign}`);
+  L.push({ht:40}); L.push({ht:16, c:[{v:'……………………………………', s:XS.sign},null,null,{v:'……………………………………', s:XS.sign},null,null,{v:'……………………………………', s:XS.sign}]});
+  F.push(`A${rSign+2}:C${rSign+2}`, `D${rSign+2}:F${rSign+2}`, `G${rSign+2}:I${rSign+2}`);
+  const visaTxt = v => { const x = plan && plan.visas && plan.visas[v.cle]; return x ? 'Visé électroniquement par '+(x.nom||x.par)+' le '+fmtDateFr(jourLocal(x.le))+' à '+heureLocale(x.le) : ''; };
+  L.push({ht:24, c:[{v:visaTxt(VISAS_PLAN[0]), s:XS.visa},null,null,{v:visaTxt(VISAS_PLAN[1]), s:XS.visa},null,null,{v:visaTxt(VISAS_PLAN[2]), s:XS.visa}]});
+  F.push(`A${rSign+3}:C${rSign+3}`, `D${rSign+3}:F${rSign+3}`, `G${rSign+3}:I${rSign+3}`);
+  _telechargerXlsx('Plan_de_decaissement_journalier_'+date+'.xlsx', {feuille:'Plan de décaissement', colonnes:[11,7,15,22,40,13,16,18,32], lignes:L, fusions:F, titres:'$9:$10', logoCm:2.1});
+  enregistrerAudit('Export Excel plan de décaissement', date);
+}
+function exporterDocPayerExcel(){
+  // Disposition identique au modèle « DOCUMENT A PAYE » : mêmes cellules (C2 taux, C4/C5/C6/F4
+  // totaux) et mêmes colonnes A–H avec leurs formules ; N° pièce et programmation ajoutés en I–J.
+  const lignes = _docPayerLignes();
+  const L = [], F = [];
+  L.push({ht:26, c:[null, {v:'PAYE - suivi et total des dépenses', s:XS.titre}]}); F.push('B1:H1');
+  L.push({c:[null, {v:'Taux CDF pour 1 USD', s:XS.lblGras}, {v:Number(rates.usd_cdf)||1, s:XS.numGras}]});
+  L.push({});
+  const p0 = 10, pN = Math.max(p0, p0 + lignes.length - 1);
+  const t = _totauxDocPayer(lignes);
+  L.push({c:[null, {v:'Total CDF', s:XS.lblGras}, {f:`SUM(D${p0}:D${pN})`, v:Math.round(t.cdf*100)/100, s:XS.numGras}, null,
+    {v:'TOTAL GÉNÉRAL USD', s:XS.lblGras}, {f:`SUM(G${p0}:G${pN})`, v:Math.round(t.total*100)/100, s:XS.numGras}]});
+  L.push({c:[null, {v:'Total en USD', s:XS.lblGras}, {f:`SUM(E${p0}:E${pN})`, v:Math.round(t.usd*100)/100, s:XS.numGras}]});
+  L.push({c:[null, {v:'Équivalent USD des montants CDF', s:XS.lblGras}, {f:`SUM(F${p0}:F${pN})`, v:Math.round(t.cdfEnUsd*100)/100, s:XS.numGras}]});
+  L.push({}); L.push({});
+  L.push({ht:36, c:['DATE','NOMS','LIBELLÉ','MONTANT CDF','MONTANT USD','CDF CONVERTIS EN USD','TOTAL USD','OBSERVATION','N° PIÈCE','PROGRAMMÉ POUR LE'].map(v=>({v, s:XS.th}))});
+  lignes.forEach((p, i)=>{
+    const r = p0 + i, v = _ventilerUSD(p);
+    L.push({c:[{v:fmtDateFr(p.date), s:XS.centre}, {v:p.beneficiaire, s:XS.txt}, {v:p.objet||p.imputationLabel||'', s:XS.txt},
+      {v:Math.round(v.cdf*100)/100, s:XS.num}, {v:Math.round(v.usd*100)/100, s:XS.num},
+      {f:`D${r}/$C$2`, v:Math.round(v.cdfEnUsd*100)/100, s:XS.num}, {f:`E${r}+F${r}`, v:Math.round(v.totalUsd*100)/100, s:XS.num},
+      {v:(p.observation||'')+(p.devise==='EUR' ? ' (EUR '+fmt2(p.montant)+')' : ''), s:XS.txt}, {v:p.numero, s:XS.centre},
+      {v:p.programme ? fmtDateFr(p.programme.date) : '', s:XS.centre}]});
+  });
+  L.push({});
+  L.push({ht:18, c:[null,null,null,null,null,null,{v:'Fait à Kinshasa, le '+fmtDateFr(jourLocal(new Date())), s:XS.lblGras}]});
+  L.push({});
+  L.push({ht:22, c:[null,null,null,null,null,null,{v:'Le Directeur des Finances', s:XS.sign}]}); F.push(`G${L.length}:I${L.length}`);
+  L.push({ht:40}); L.push({ht:16, c:[null,null,null,null,null,null,{v:'……………………………………', s:XS.sign}]}); F.push(`G${L.length}:I${L.length}`);
+  _telechargerXlsx('DOCUMENT_A_PAYE_'+jourLocal(new Date())+'.xlsx', {feuille:'PAYE', colonnes:[12.2,27.4,61.1,12.8,12.5,15.7,15.3,18.1,16,14], lignes:L, fusions:F, titres:'$9:$9', logoCm:1.9});
+  enregistrerAudit('Export Excel document à payer', lignes.length+' pièce(s)');
+}
+function exporterRapportCaisseExcel(){
+  // Rapport journalier de caisse : encaissements, décaissements et soldes du coffre par devise.
+  const date = document.getElementById('pl_date').value;
+  if(!date){ alert('Choisissez une date.'); return; }
+  const debut = new Date(date+'T00:00:00'), fin = new Date(date+'T23:59:59.999');
+  const duJour = caisseMouvements.filter(m=>{ const d = new Date(m.dateHeure); return d>=debut && d<=fin; })
+    .sort((a,b)=> new Date(a.dateHeure) - new Date(b.dateHeure));
+  const plan = plansDecaissement[date];
+  const L = [], F = [];
+  _xlEnteteOfficiel(6, L, F);
+  L.push({});
+  L.push({ht:26, c:[{v:'RAPPORT JOURNALIER DE CAISSE', s:XS.titre}]}); F.push('A6:F6');
+  L.push({ht:18, c:[{v:'JOURNÉE DU', s:XS.lblGras}, {v:fmtDateFr(date), s:XS.lblGras}, null,
+    {v: plan && plan.cloturePar ? 'Clôturée par '+plan.cloturePar+' à '+heureLocale(plan.dateCloture) : 'PROVISOIRE — journée non clôturée', s:XS.simple}]});
+  const bloc = (titre, liste) => {
+    L.push({});
+    L.push({ht:18, c:[{v:titre, s:XS.lblGras}]});
+    L.push({ht:20, c:['HEURE','N° PIÈCE','MOTIF / SOURCE','DEVISE','MONTANT','PAR'].map(v=>({v, s:XS.th}))});
+    liste.forEach(m=>L.push({c:[{v:heureLocale(m.dateHeure), s:XS.centre}, {v:m.pieceNumero || '', s:XS.centre},
+      {v:m.motif||'', s:XS.txt}, {v:m.devise, s:XS.centre}, {v:Number(m.montant||0), s:XS.num}, {v:m.par||'', s:XS.txt}]}));
+    if(!liste.length) L.push({c:[{v:'Aucun mouvement.', s:XS.txt},{v:'',s:XS.txt},{v:'',s:XS.txt},{v:'',s:XS.txt},{v:'',s:XS.num},{v:'',s:XS.txt}]});
+  };
+  bloc('ENCAISSEMENTS (alimentations du coffre)', duJour.filter(m=>m.type==='Alimentation'));
+  bloc('DÉCAISSEMENTS (paiements en espèces)', duJour.filter(m=>m.type!=='Alimentation'));
+  L.push({});
+  L.push({ht:18, c:[{v:'SITUATION DU COFFRE-FORT', s:XS.lblGras}]});
+  L.push({ht:20, c:['DEVISE','SOLDE D\'OUVERTURE','ENTRÉES','SORTIES','SOLDE THÉORIQUE','COMPTAGE / ÉCART'].map(v=>({v, s:XS.th}))});
+  ['USD','CDF','EUR'].forEach(d=>{
+    const ouv = _soldeCaisseAu(d, new Date(debut.getTime()-1));
+    const ent = duJour.filter(m=>m.devise===d && m.type==='Alimentation').reduce((s,m)=>s+Number(m.montant||0),0);
+    const sor = duJour.filter(m=>m.devise===d && m.type!=='Alimentation').reduce((s,m)=>s+Number(m.montant||0),0);
+    if(d==='EUR' && !ouv && !ent && !sor) return;
+    const r = L.length + 1;
+    const compte = plan && plan.comptage ? plan.comptage[d] : null;
+    L.push({c:[{v:d, s:XS.centre}, {v:ouv, s:XS.num}, {v:ent, s:XS.num}, {v:sor, s:XS.num}, {f:`B${r}+C${r}-D${r}`, v:ouv+ent-sor, s:XS.num},
+      {v: compte!==null && compte!==undefined ? 'Compté '+fmt2(compte)+' — écart '+fmt2(compte-(ouv+ent-sor)) : 'Non compté', s:XS.txt}]});
+  });
+  L.push({}); L.push({});
+  const rSign = L.length + 1;
+  L.push({ht:22, c:[{v:'Le Caissier', s:XS.sign}, null, {v:'Le Directeur des Finances', s:XS.sign}, null, {v:"L'Administrateur du Budget", s:XS.sign}]});
+  F.push(`A${rSign}:B${rSign}`, `C${rSign}:D${rSign}`, `E${rSign}:F${rSign}`);
+  L.push({ht:40});
+  L.push({ht:16, c:[{v:'……………………………', s:XS.sign}, null, {v:'……………………………', s:XS.sign}, null, {v:'……………………………', s:XS.sign}]});
+  F.push(`A${rSign+2}:B${rSign+2}`, `C${rSign+2}:D${rSign+2}`, `E${rSign+2}:F${rSign+2}`);
+  _telechargerXlsx('Rapport_journalier_caisse_'+date+'.xlsx', {feuille:'Rapport de caisse', colonnes:[10,16,48,9,16,30], lignes:L, fusions:F, logoCm:2.1});
+  enregistrerAudit('Export Excel rapport de caisse', date);
+}
+
+/* ===================== GRAPHIQUES DU TABLEAU DE BORD ===================== */
+const MOIS_COURTS = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function renderGraphesDashboard(){
+  const boxC = document.getElementById('dashGrapheComptes');
+  const boxM = document.getElementById('dashGrapheMois');
+  if(!boxC || !boxM) return;
+
+  // Exécution par compte : barre = part du crédit voté engagée, rouge + ⚠ au-delà de 100 %.
+  const comptes = budgetAnnuel.comptes.filter(c=>Number(c.montantAnnuel)>0);
+  boxC.innerHTML = comptes.length ? comptes.map(c=>{
+    const engage = engagementCumuleCompte(c.id);
+    const pct = engage / c.montantAnnuel * 100;
+    const depasse = pct > 100;
+    const pctTxt = pct.toLocaleString('fr-FR',{maximumFractionDigits: pct<10 ? 1 : 0})+' %';
+    const info = `<b>${escapeHtml(c.nom)}</b><br>Engagé : ${fmtMontant(engage)} CDF<br>Crédit voté : ${fmtMontant(c.montantAnnuel)} CDF<br>Solde : ${fmtMontant(c.montantAnnuel-engage)} CDF${depasse?'<br>⚠ Dépassement budgétaire':''}`;
+    return `<div class="gb-ligne" data-info="${escapeHtml(info)}" role="img" aria-label="${escapeHtml(c.nom)} : ${pctTxt} du crédit engagé">
+      <span class="gb-nom">${escapeHtml(c.nom)}</span>
+      <span class="gb-piste"><span class="gb-barre${depasse?' depasse':''}" style="width:${Math.min(pct,100).toFixed(1)}%"></span></span>
+      <span class="gb-pct"${depasse?' style="color:var(--rouge)"':''}>${depasse?'⚠ ':''}${pctTxt}</span>
+    </div>`;
+  }).join('') : '<p class="graph-legende">Aucun crédit annuel défini — voir l\'onglet Budget annuel.</p>';
+
+  // Engagements des 12 derniers mois glissants (le libellé d'exercice est libre, ex. « 2023-2024 »),
+  // toutes pièces confondues, y compris hors budget.
+  const now = new Date();
+  const mois = [];
+  for(let k=11; k>=0; k--){
+    const d = new Date(now.getFullYear(), now.getMonth()-k, 1);
+    mois.push({cle: d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'), libelle: MOIS_COURTS[d.getMonth()], annee: d.getFullYear(), v: 0});
+  }
+  const index = Object.fromEntries(mois.map((m,i)=>[m.cle,i]));
+  ops.concat(mdfs).forEach(p=>{
+    if(p.annule || p.statutValidation==='Rejetée') return;
+    const i = index[(p.date||'').slice(0,7)];
+    if(i!==undefined) mois[i].v += convertirPieceVersCDF(p);
+  });
+  const moyenneVotee = totalVoteAnnuel() / 12;
+  const echelle = (Math.max(...mois.map(m=>m.v), moyenneVotee) || 1) * 1.1;
+  const colonnes = mois.map((m,i)=>{
+    const ecart = moyenneVotee ? `<br>${m.v>moyenneVotee?'Au-dessus':'En dessous'} de la moyenne votée (${fmtMontant(moyenneVotee)} CDF)` : '';
+    const info = `<b>${m.libelle} ${m.annee}</b><br>Engagé : ${fmtMontant(m.v)} CDF${ecart}`;
+    return `<div class="gm-col${i===11?' courant':''}" data-info="${escapeHtml(info)}" role="img" aria-label="${m.libelle} ${m.annee} : ${fmtMontant(m.v)} CDF engagés">
+      <div class="gm-barre" style="height:${(m.v/echelle*100).toFixed(1)}%"></div></div>`;
+  }).join('');
+  const ligneRef = moyenneVotee
+    ? `<div class="gm-ref" style="bottom:${(moyenneVotee/echelle*100).toFixed(1)}%"></div>` : '';
+  boxM.innerHTML = `<div class="gm-zone">${ligneRef}${colonnes}</div>
+    <div class="gm-mois">${mois.map(m=>`<span>${m.libelle.replace('.','')}</span>`).join('')}</div>
+    <div class="graph-legende">Montants engagés par mois (OP + MDF non rejetées, y compris hors budget, en CDF). Le mois en cours est en doré ; la ligne pointillée marque la moyenne mensuelle du budget voté${moyenneVotee?' ('+fmtMontant(moyenneVotee)+' CDF)':''}. Total sur 12 mois : <b>${fmtMontant(mois.reduce((s,m)=>s+m.v,0))} CDF</b>.</div>`;
+}
+function totalVoteAnnuel(){ return budgetAnnuel.comptes.reduce((s,c)=>s+Number(c.montantAnnuel||0),0); }
+
+/* Infobulle unique pour tout élément portant data-info (contenu déjà échappé à la construction). */
+(function(){
+  const tip = document.createElement('div'); tip.id = 'infobulle'; document.body.appendChild(tip);
+  document.addEventListener('mousemove', e=>{
+    const cible = e.target.closest ? e.target.closest('[data-info]') : null;
+    if(!cible){ tip.style.display = 'none'; return; }
+    tip.innerHTML = cible.dataset.info; tip.style.display = 'block';
+    const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8);
+    const y = (e.clientY + 14 + tip.offsetHeight > window.innerHeight) ? e.clientY - tip.offsetHeight - 10 : e.clientY + 14;
+    tip.style.left = x+'px'; tip.style.top = y+'px';
+  });
+})();
 
 /* ===================== LISTE / RECHERCHE ===================== */
 function badgeStatut(s){
@@ -1628,7 +2694,7 @@ function renderListe(){
    possible. Dès qu'elle a été imprimée, liquidée, ordonnancée ou payée, elle ne peut plus
    jamais disparaître — seule une ANNULATION tracée (motif obligatoire) est possible, et elle
    reste visible pour toujours dans les listes et le journal d'audit. */
-function _pieceEstVierge(p){ return !p.nbImpressions && !p.liquidePar && p.statutValidation==='En attente'; }
+function _pieceEstVierge(p){ return !p.nbImpressions && !p.liquidePar && !p.payePar && p.statutValidation==='En attente'; }
 function supprimerOP(numero){
   const p = ops.find(o=>o.numero===numero); if(!p) return;
   if(_pieceEstVierge(p)){
@@ -1902,17 +2968,23 @@ function renderPaiement(){
     else if(estSaPropreSaisie) actions = '<i style="color:var(--rouge)">Vous êtes le préparateur — paiement interdit</i>';
     else if(estSonPropreOrdonnancement) actions = '<i style="color:var(--rouge)">Vous avez ordonnancé/approuvé cette pièce — paiement interdit</i>';
     else if(estSaPropreApprobationBudget) actions = '<i style="color:var(--rouge)">Vous avez approuvé cette MDF (Budget) — paiement interdit</i>';
+    else if(!p.programme) actions = '<i style="color:var(--gris)">⏳ En attente de programmation par le DIRFIN</i>';
+    else if(p.programme.date > jourLocal(new Date())) actions = '<i style="color:var(--gris)">📅 Programmée pour le '+fmtDateFr(p.programme.date)+'</i>';
     else if(!soldeOk) actions = '<i style="color:var(--rouge)">🏦 Coffre insuffisant en '+escapeHtml(p.devise)+' — alimentez la caisse</i>';
     else actions = `<button class="btn vert petit" onclick="payerPiece('${p._type}','${p.numero}')">💰 Marquer payée</button>`;
+    const prog = p.programme ? `<span class="badge-prog">✅ ${fmtDateFr(p.programme.date)}</span>` : '<span style="color:var(--gris)">—</span>';
     return `<tr><td>${escapeHtml(p._type)}</td><td>${escapeHtml(p.numero)}</td><td>${escapeHtml(p.date)}</td><td>${escapeHtml(p.beneficiaire)}</td>
       <td>${fmtMontant(p.montant)} ${escapeHtml(p.devise)}</td><td>${escapeHtml(p.mode||'—')}</td><td>${escapeHtml(p.validePar||'—')}</td>
-      <td class="row-actions">${actions}</td></tr>`;
-  }).join('') || '<tr><td colspan="8">Aucune pièce ordonnancée en attente de paiement.</td></tr>';
+      <td>${prog}</td><td class="row-actions">${actions}</td></tr>`;
+  }).join('') || '<tr><td colspan="9">Aucune pièce ordonnancée en attente de paiement.</td></tr>';
 }
 function payerPiece(type, numero){
   const p = _trouverPiece(type, numero); if(!p) return;
   if(!peutPayer()){ alert('Seul un compte Caissier peut enregistrer un paiement.'); return; }
   if(p.statutValidation!=='Validée'){ alert('Cette pièce doit d\'abord être ordonnancée'+(type==='MDF'?' puis approuvée par le DG':'')+' avant le paiement.'); return; }
+  if(!p.programme){ alert('Paiement bloqué : '+numero+' n\'a pas été programmée par le Directeur des Finances (onglet « Document à payer »).\n\nPour un paiement hors programme sur ordre écrit d\'une autorité, utilisez « Paiement d\'urgence ».'); return; }
+  if(p.programme.date > jourLocal(new Date())){ alert('Paiement bloqué : '+numero+' est programmée pour le '+fmtDateFr(p.programme.date)+' par le Directeur des Finances.'); return; }
+  if(planEstCloture(jourLocal(new Date()))){ alert('La journée de caisse du '+fmtDateFr(jourLocal(new Date()))+' est déjà clôturée : aucun nouveau décaissement ne peut y être inscrit.'); return; }
   if(p.creePar===sessionUser.username){ alert('Séparation des tâches : vous ne pouvez pas payer une pièce que vous avez vous-même saisie.'); return; }
   if(p.validePar===sessionUser.username){ alert('Séparation des tâches : vous avez ordonnancé/approuvé cette pièce — le paiement doit être enregistré par quelqu\'un d\'autre (Ordonnateur ≠ Comptable).'); return; }
   if(p.valideBudgetPar===sessionUser.username){ alert('Séparation des tâches : vous avez approuvé cette MDF comme Administrateur du Budget — le paiement doit être enregistré par quelqu\'un d\'autre (Ordonnateur ≠ Comptable).'); return; }
@@ -1959,7 +3031,8 @@ function alimenterCaisse(){
   renderCaisse();
 }
 function renderCaisse(){
-  const devises = ['CDF','USD','EUR'];
+  // La caisse de l'institut ne tient que deux comptes : CDF et USD (EUR affiché seulement s'il existe un historique).
+  const devises = ['CDF','USD'].concat(caisseMouvements.some(m=>m.devise==='EUR') ? ['EUR'] : []);
   document.getElementById('caisse_soldes').innerHTML = devises.map(d=>
     `<div class="card"><b>${fmtMontant(soldeCaisse(d))}</b><span>Solde coffre-fort — ${d}</span></div>`).join('');
   const tries = [...caisseMouvements].sort((a,b)=> new Date(b.dateHeure) - new Date(a.dateHeure));
@@ -1986,10 +3059,12 @@ function exporterCaisseCSV(){
 }
 
 function exporterJSON(){
-  const data = {ops, mdfs, imputations, credits, rates, logo, budgetAnnuel, compteurs, journalAudit, users, seuils, clotures, previsionnel, caisseMouvements};
+  const data = {ops, mdfs, imputations, credits, rates, logo, budgetAnnuel, compteurs, journalAudit, users, seuils, clotures, previsionnel, caisseMouvements, plansDecaissement};
   const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = 'SIGOP_sauvegarde_'+new Date().toISOString().slice(0,10)+'.json'; a.click();
+  save(LS.derniereSauvegarde, new Date().toISOString());
+  if(document.getElementById('tab-dash').classList.contains('active')) renderDashboard();
 }
 function importerJSON(ev){
   const file = ev.target.files[0]; if(!file) return;
@@ -2003,6 +3078,7 @@ function importerJSON(ev){
       if(data.journalAudit) journalAudit = data.journalAudit; if(data.users) users = data.users;
       if(data.seuils) seuils = data.seuils; if(data.clotures) clotures = data.clotures; if(data.previsionnel) previsionnel = data.previsionnel;
       if(data.caisseMouvements) caisseMouvements = data.caisseMouvements;
+      if(data.plansDecaissement){ plansDecaissement = data.plansDecaissement; save(LS.plans, plansDecaissement); }
       save(LS.ops, ops); save(LS.mdfs, mdfs); save(LS.imput, imputations); save(LS.credits, credits); save(LS.rates, rates); save(LS.logo, logo);
       save(LS.budgetAnnuel, budgetAnnuel); save(LS.compteurs, compteurs); save(LS.audit, journalAudit); if(data.users) save(LS.users, users);
       save(LS.seuils, seuils); save(LS.clotures, clotures); save(LS.previsionnel, previsionnel); save(LS.caisse, caisseMouvements);
@@ -2653,6 +3729,9 @@ function appInit(){
   afficheLogo();
   peupleComptes();
   peupleFiltreComptes();
+  document.getElementById('ur_compte').innerHTML = budgetAnnuel.comptes.map(c=>`<option value="${escapeHtml(c.id)}">${escapeHtml(c.nom)}</option>`).join('');
+  document.getElementById('dp_date').value = jourLocal(new Date());
+  document.getElementById('pl_date').value = jourLocal(new Date());
   renderDashboard();
 }
 initAuth();
